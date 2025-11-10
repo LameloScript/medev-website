@@ -26,90 +26,82 @@ export default function Faq() {
                     defaultValue="item-1"
                 >
                     <AccordionItem value="item-1">
-                        <AccordionTrigger>Product Information</AccordionTrigger>
+                        <AccordionTrigger>Quels types de projets pouvez-vous réaliser ?</AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-4 text-balance">
                             <p>
-                                Our flagship product combines cutting-edge technology with sleek
-                                design. Built with premium materials, it offers unparalleled
-                                performance and reliability.
+                                Nous créons des sites web (vitrine, e-commerce, marketplace), des applications mobiles (Android/iOS),
+                                des solutions d'intelligence artificielle, des systèmes IoT, et des outils de géomatique (SIG).
                             </p>
                             <p>
-                                Key features include advanced processing capabilities, and an
-                                intuitive user interface designed for both beginners and experts.
+                                Notre expertise couvre également le design (logos, charte graphique, UX/UI),
+                                l'automatisation des processus métier, la data science, et l'hébergement cloud sécurisé.
                             </p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-2">
-                        <AccordionTrigger>Shipping Details</AccordionTrigger>
+                        <AccordionTrigger>Quel est le prix pour un site web ou une application mobile ?</AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-4 text-balance">
                             <p>
-                                We offer worldwide shipping through trusted courier partners.
-                                Standard delivery takes 3-5 business days, while express shipping
-                                ensures delivery within 1-2 business days.
+                                Pour un site web : Starter Package (1 200 000 FCFA), Growth Package avec e-commerce (2 800 000 FCFA),
+                                ou Premium Package pour marketplace/SaaS (5 000 000 FCFA).
                             </p>
                             <p>
-                                All orders are carefully packaged and fully insured. Track your
-                                shipment in real-time through our dedicated tracking portal.
+                                Pour une application mobile : Starter (2 500 000 FCFA), Growth Android & iOS (4 500 000 FCFA),
+                                ou Premium avec IA et stores (7 000 000 FCFA). Nos packages vous font économiser jusqu'à 30%.
                             </p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-3">
-                        <AccordionTrigger>Return Policy</AccordionTrigger>
+                        <AccordionTrigger>Combien de temps prend la réalisation d'un projet ?</AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-4 text-balance">
                             <p>
-                                We stand behind our products with a comprehensive 30-day return
-                                policy. If you&apos;re not completely satisfied, simply return the
-                                item in its original condition.
+                                Un site vitrine prend généralement 3-4 semaines, un site e-commerce 6-8 semaines,
+                                et une application mobile complète 10-12 semaines.
                             </p>
                             <p>
-                                Our hassle-free return process includes free return shipping and
-                                full refunds processed within 48 hours of receiving the returned
-                                item.
+                                Les délais varient selon la complexité du projet, votre réactivité pour les validations,
+                                et la disponibilité de vos contenus (textes, images, fonctionnalités spécifiques).
                             </p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-4">
-                        <AccordionTrigger>Return Policy</AccordionTrigger>
+                        <AccordionTrigger>Qu'est-ce qui est inclus dans vos packages ?</AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-4 text-balance">
                             <p>
-                                We stand behind our products with a comprehensive 30-day return
-                                policy. If you&apos;re not completely satisfied, simply return the
-                                item in its original condition.
+                                Tous nos packages incluent l'hébergement sécurisé (1 an), l'optimisation SEO,
+                                une charte graphique professionnelle, et la maintenance (3 à 12 mois selon le package).
                             </p>
                             <p>
-                                Our hassle-free return process includes free return shipping and
-                                full refunds processed within 48 hours of receiving the returned
-                                item.
+                                Les packages Growth et Premium incluent aussi le paiement en ligne (Mobile Money, CB, PayPal),
+                                un système de gestion de contenu (CMS), et pour le Premium : intégrations API avancées,
+                                support prioritaire et mises à jour évolutives.
                             </p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-5">
-                        <AccordionTrigger>Return Policy</AccordionTrigger>
+                        <AccordionTrigger>Avez-vous déjà réalisé des projets similaires ?</AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-4 text-balance">
                             <p>
-                                We stand behind our products with a comprehensive 30-day return
-                                policy. If you&apos;re not completely satisfied, simply return the
-                                item in its original condition.
+                                Oui, nous avons accompagné plusieurs entreprises : Tecnimuro Africa (site + app mobile),
+                                Taohome et Caracole Afrique (e-commerce + app), Ong Yiwô zone, Happy Livraison,
+                                Afrikababba, Slash, et Ageo SA.
                             </p>
                             <p>
-                                Our hassle-free return process includes free return shipping and
-                                full refunds processed within 48 hours of receiving the returned
-                                item.
+                                Notre portfolio démontre notre capacité à livrer des solutions web et mobile performantes
+                                pour différents secteurs d'activité, de la simple vitrine aux plateformes complexes.
                             </p>
                         </AccordionContent>
                     </AccordionItem>
                     <AccordionItem value="item-6">
-                        <AccordionTrigger>Return Policy</AccordionTrigger>
+                        <AccordionTrigger>Comment vous contacter pour démarrer un projet ?</AccordionTrigger>
                         <AccordionContent className="flex flex-col gap-4 text-balance">
                             <p>
-                                We stand behind our products with a comprehensive 30-day return
-                                policy. If you&apos;re not completely satisfied, simply return the
-                                item in its original condition.
+                                Vous pouvez nous joindre par téléphone au +225 07 89 77 60 28,
+                                par email à contacts@medev-group.com, ou visiter notre site www.medev-group.com.
                             </p>
                             <p>
-                                Our hassle-free return process includes free return shipping and
-                                full refunds processed within 48 hours of receiving the returned
-                                item.
+                                Nous sommes basés à Abidjan, Côte d'Ivoire. Contactez-nous pour un devis gratuit
+                                et personnalisé selon vos besoins. Suivez-nous aussi sur nos réseaux sociaux @MedevGroup.
                             </p>
                         </AccordionContent>
                     </AccordionItem>
