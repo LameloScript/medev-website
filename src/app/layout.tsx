@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Nunito_Sans, Caesar_Dressing, Poppins, Bangers } from "next/font/google";
-import "@/src/app/globals.css";
+import "./globals.css";
 import Footer from "@/src/components/views/footer/footer";
 
 
 const nunitoSans = Nunito_Sans({
   variable: "--font-nunito-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
   display: "swap",
 });
 
@@ -42,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
         className={`${nunitoSans.variable} ${caesarDressing.variable} ${poppins.variable} ${bangers.variable} antialiased m-0 px-0`}
       >
