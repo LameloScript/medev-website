@@ -28,7 +28,7 @@ export default function Header() {
 
             {/* Menu déroulant */}
             <div
-                className={`fixed top-0 left-0 z-50 w-full flex flex-col gap-20 bg-white justify-between overflow-hidden min-h-screen transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'
+                className={`fixed top-0 left-0 z-50 w-full flex flex-col gap-20 bg-white justify-between overflow-hidden h-screen transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'
                     }`}
             >
                 <div className="container-fixed">
