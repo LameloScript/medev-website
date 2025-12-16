@@ -47,8 +47,10 @@ export default function RootLayout({
       <body
         className={`${nunitoSans.variable} ${caesarDressing.variable} ${poppins.variable} ${bangers.variable} antialiased m-0 px-0`}
       >
-        <div className="w-full">
-          {children}
+        <div className="w-full min-h-screen flex flex-col">
+          <main className="flex-1">
+            {children}
+          </main>
           <Footer />
         </div>
       </body>

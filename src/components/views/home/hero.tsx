@@ -12,7 +12,7 @@ export default function Hero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="relative lg:h-screen flex flex-col overflow-hidden">
+    <div className="relative h-screen flex flex-col overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
