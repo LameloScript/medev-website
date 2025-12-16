@@ -1,6 +1,6 @@
-import { redirect } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation'
 
 export default function RootPage() {
-  // Redirect to French version by default
-  redirect('/fr')
+  // Permanent redirect to French version
+  permanentRedirect('/fr')
 }
