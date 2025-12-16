@@ -12,7 +12,7 @@ export default function Faq() {
             <div className="lg:w-1/2 gap-2 flex flex-col">
                 <span>[FAQ]</span>
                 <div className="lg:w-2/3 gap-2 flex flex-col">
-                    <h2 className="font-bebas text-5xl lg:text-7xl lg:w-1/2">VOS QUESTIONS</h2>
+                    <h2 className="font-bangers text-5xl lg:text-7xl lg:w-1/2">VOS QUESTIONS</h2>
                     <p className="text-sm lg:text-base">
                         Vous avez des questions ? Nous avons les réponses. Consultez notre FAQ pour en savoir plus sur notre processus, nos tarifs et comment nous donnons vie à votre vision créative.
                     </p>

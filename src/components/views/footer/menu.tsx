@@ -26,13 +26,13 @@ export default function Menu() {
 
     ]
     return (
-        <div className="flex lg:gap-8 flex-wrap gap-3 items-center justify-center lg:flex-row " >
+        <div className="flex lg:gap-8 flex-col gap-4 items-start justify-center lg:flex-row " >
             {
                 footerItems.map((item) => (
                     <a
                         key={item.label}
                         href={item.href}
-                        className="text-base "
+                        className="text-xl "
 
                     >
                         {item.label}

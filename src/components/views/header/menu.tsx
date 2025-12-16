@@ -40,7 +40,7 @@ export default function Menu() {
                     <a
                         key={item.label}
                         href={item.href}
-                        className="flex flex-col items-center font-bebas font-bold text-4xl lg:text-5xl "
+                        className="flex flex-col items-center font-bangers font-bold text-4xl lg:text-5xl "
 
                     >
                         {item.label}

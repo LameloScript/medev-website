@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Nunito_Sans, Caesar_Dressing, Poppins, Bebas_Neue } from "next/font/google";
+import { Nunito_Sans, Caesar_Dressing, Poppins, Bangers } from "next/font/google";
 import "@/src/app/globals.css";
 import Footer from "@/src/components/views/footer/footer";
-import Header from "@/src/components/views/header/header";
 
 
 const nunitoSans = Nunito_Sans({
@@ -25,8 +24,8 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas",
+const bangers = Bangers({
+  variable: "--font-bangers",
   subsets: ["latin"],
   weight: "400",
   display: "swap",
@@ -45,11 +44,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${nunitoSans.variable} ${caesarDressing.variable} ${poppins.variable} ${bebasNeue.variable} antialiased m-0 p-0`}
+        className={`${nunitoSans.variable} ${caesarDressing.variable} ${poppins.variable} ${bangers.variable} antialiased m-0 px-0`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <div className="w-full">
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

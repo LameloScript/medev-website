@@ -100,7 +100,7 @@ export default function project() {
             <div className="flex flex-col items-center gap-4 pb-8">
                 <span className="text-center">[PROJETS]</span>
                 <div className="lg:w-2/3 gap-2 flex flex-col">
-                    <h2 className="font-bebas text-5xl lg:text-7xl text-center">PARLONS DE VOTRE PROJET</h2>
+                    <h2 className="font-bangers text-5xl lg:text-7xl text-center">PARLONS DE VOTRE PROJET</h2>
                     <p className="text-sm lg:text-base text-center">
                         Découvrez les esprits créatifs qui donnent vie à votre vision. Notre équipe allie créativité, stratégie et passion pour transformer vos idées en designs percutants. Ensemble, nous concrétisons votre vision, pixel par pixel.                    </p>
                 </div>
@@ -124,14 +124,14 @@ export default function project() {
                 <div className="relative z-10 flex flex-col  lg:flex-row w-full px-4 sm:px-8 lg:px-14 py-8 lg:py-14 gap-8 lg:gap-30">
                     <div className="flex flex-col justify-between w-full lg:w-1/3 gap-6 lg:gap-8">
                         <div className="space-y-4">
-                            <h3 className="font-bebas text-2xl sm:text-5xl lg:text-6xl text-white leading-none">Prêts à discuter
+                            <h3 className="font-bangers text-2xl sm:text-5xl lg:text-6xl text-white leading-none">Prêts à discuter
                                 de votre projet avec nous ?</h3>
-                            <p className="text-white text-sm sm:text-base">
+                            <p className="text-white text-sm sm:text-base lg:flex hidden">
                                 Parlons de la façon dont nous pouvons concevoir une expérience utilisateur qui non seulement soit esthétiquement réussie, mais qui génère également une réelle croissance pour votre produit.
 
                             </p>
                         </div>
-                        <div className="flex flex-col gap-4">
+                        <div className="lg:flex flex-col gap-4 hidden">
                             
                             <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
                                 <Avatar>
@@ -153,7 +153,7 @@ export default function project() {
                                     <AvatarFallback>ER</AvatarFallback>
                                 </Avatar>
                             </div>
-                            <span className="text-white font-bebas text-xs lg:text-xl">+56 Entreprises nous ont fait confiance </span>
+                            <span className="text-white font-bangers text-xs lg:text-xl">+56 Entreprises nous ont fait confiance </span>
                         </div>
                     </div>
                     <div className="flex flex-col w-full lg:w-2/3 gap-6 relative pb-24 lg:pb-20">
@@ -169,7 +169,7 @@ export default function project() {
                                             <step.icon className="w-6 h-6" />
                                         </div>
                                         <div className="mt-2 text-left hidden lg:block">
-                                            <p className={`text-base font-medium font-bebas ${currentStep >= step.number ? 'text-white' : 'text-gray-400'
+                                            <p className={`text-base font-medium font-bangers ${currentStep >= step.number ? 'text-white' : 'text-gray-400'
                                                 }`}>
                                                 {step.title}
                                             </p>
@@ -188,7 +188,7 @@ export default function project() {
                         {currentStep === 1 && (
                             <div className="text-white w-full">
                                 <div className="mb-4 ">
-                                    <h3 className="font-bebas text-2xl lg:text-3xl">Choississez votre industrie</h3>
+                                    <h3 className="font-bangers text-2xl lg:text-3xl">Choississez votre industrie</h3>
                                     <p className="text-sm text-gray-300">Sélectionnez le secteur qui correspond à votre projet</p>
                                 </div>
                                 <div className="pt-5">
@@ -290,7 +290,7 @@ export default function project() {
                         {currentStep === 2 && (
                             <div className="text-white w-full">
                                 <div className="mb-4">
-                                    <h3 className="font-bebas text-2xl lg:text-3xl">Entrez vos informations</h3>
+                                    <h3 className="font-bangers text-2xl lg:text-3xl">Entrez vos informations</h3>
                                     <p className="text-sm text-gray-300">Partagez vos coordonnées avec nous</p>
                                 </div>
                                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
@@ -362,7 +362,7 @@ export default function project() {
                         {currentStep === 3 && (
                             <div className="text-white w-full">
                                 <div className="mb-4">
-                                    <h3 className="font-bebas text-2xl lg:text-3xl">Détails du projet</h3>
+                                    <h3 className="font-bangers text-2xl lg:text-3xl">Détails du projet</h3>
                                     <p className="text-sm text-gray-300">Budget et solutions souhaitées</p>
                                 </div>
                                 <div className="grid grid-cols-1 gap-4 lg:gap-6">

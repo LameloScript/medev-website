@@ -1,0 +1,129 @@
+import HeroImage from "../hero-image";
+
+export default function title() {
+  return (
+
+    <div className="flex flex-col gap-76 mt-10 lg:hidden md:hidden">
+      <div className="">
+        <div className="flex flex-col gap-6 lg:items-start items-center lg:justify-start justify-center px-0 lg:px-0">
+          <h1 className="lg:text-start text-center lg:text-8xl text-4xl md:text-6xl font-bangers lg:leading-24 leading-tight opacity-0 animate-fade-in-up [animation-delay:0.2s]">
+            Pas juste de la tech, mais une
+            <span className="text-[#ff6400]"> Révolution </span>
+            <div className="flex items-center justify-center">
+              <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                width="40.000000pt" height="40.000000pt" viewBox="0 0 107.000000 149.000000"
+                preserveAspectRatio="xMidYMid meet">
+
+                <g transform="translate(0.000000,149.000000) scale(0.100000,-0.100000)"
+                  fill="#000000" stroke="none">
+                  <path d="M564 1346 c-17 -44 10 -63 72 -51 30 5 34 10 34 35 0 29 -1 30 -50
+30 -35 0 -52 -5 -56 -14z"/>
+                  <path d="M282 1322 c-9 -6 -11 -18 -6 -35 5 -22 12 -27 38 -27 59 0 77 10 74
+39 -3 23 -8 26 -48 29 -25 1 -51 -2 -58 -6z"/>
+                  <path d="M615 1271 c-56 -7 -64 -20 -46 -73 6 -17 10 -32 8 -34 -1 -2 -37 -6
+-80 -10 l-78 -7 3 49 3 49 -70 -3 c-38 -2 -74 -8 -79 -13 -6 -5 -5 -24 3 -49
+8 -28 9 -46 1 -59 -5 -11 -10 -38 -10 -61 0 -59 -27 -110 -67 -126 -18 -8 -33
+-17 -33 -21 0 -3 10 -20 23 -37 39 -52 39 -54 7 -71 -37 -19 -38 -34 -5 -65
+30 -29 31 -40 4 -74 -21 -26 -21 -28 -3 -41 11 -8 27 -17 36 -20 23 -8 23 -18
+-2 -40 -28 -25 -25 -33 15 -52 23 -11 34 -22 30 -31 -3 -8 -8 -25 -11 -38 -6
+-22 -3 -24 31 -24 l37 0 -4 -47 c-2 -36 1 -48 12 -50 91 -12 93 -13 176 -100
+51 -53 88 -84 96 -80 8 3 38 50 67 106 30 56 59 101 65 101 6 0 28 5 50 11
+l38 11 -7 44 c-6 42 -5 44 18 44 36 0 39 10 15 48 -22 36 -15 51 25 52 22 0
+22 28 1 52 -16 17 -15 19 10 39 l27 22 -25 26 c-30 32 -32 47 -9 73 15 17 15
+20 -12 49 -25 25 -28 32 -17 49 18 29 15 38 -19 56 -30 15 -32 23 -15 64 5 12
+-6 22 -38 38 -30 14 -47 29 -50 44 -3 13 -10 46 -16 75 -7 28 -11 64 -10 80 4
+59 9 56 -95 44z m-95 -161 c0 -5 -7 -10 -16 -10 -8 0 -12 5 -9 10 3 6 10 10
+16 10 5 0 9 -4 9 -10z m40 0 c0 -5 -4 -10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10
+10 10 6 0 10 -4 10 -10z m54 -11 c-3 -5 -10 -7 -15 -3 -5 3 -7 10 -3 15 3 5
+10 7 15 3 5 -3 7 -10 3 -15z m-144 1 c0 -5 -4 -10 -10 -10 -5 0 -10 5 -10 10
+0 6 5 10 10 10 6 0 10 -4 10 -10z m195 -10 c-3 -5 -10 -10 -16 -10 -5 0 -9 5
+-9 10 0 6 7 10 16 10 8 0 12 -4 9 -10z m-255 -10 c0 -5 -4 -10 -10 -10 -5 0
+-10 5 -10 10 0 6 5 10 10 10 6 0 10 -4 10 -10z m270 -37 c32 -17 67 -46 87
+-71 51 -67 41 -82 -17 -28 -68 64 -128 89 -207 88 -101 -1 -191 -54 -265 -156
+-31 -43 -36 -35 -13 21 65 156 260 225 415 146z m30 27 c0 -5 -4 -10 -10 -10
+-5 0 -10 5 -10 10 0 6 5 10 10 10 6 0 10 -4 10 -10z m-340 -20 c0 -5 -7 -10
+-16 -10 -8 0 -12 5 -9 10 3 6 10 10 16 10 5 0 9 -4 9 -10z m-50 -30 c0 -5 -4
+-10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10 10 10 6 0 10 -4 10 -10z m470 -20 c0
+-5 -4 -10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10 10 10 6 0 10 -4 10 -10z m-560
+-100 c0 -5 -4 -10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10 10 10 6 0 10 -4 10 -10z
+m569 -40 c38 -20 22 -28 -26 -14 -66 20 -120 18 -159 -7 -61 -37 -63 -51 -38
+-254 14 -118 18 -132 42 -152 14 -12 24 -24 22 -27 -4 -4 -91 -9 -113 -7 -5 1
+-1 9 8 18 18 17 18 52 -2 281 -7 85 -22 106 -87 123 -55 15 -110 6 -157 -25
+-43 -29 -52 -22 -15 13 54 51 156 59 227 19 l37 -21 40 33 c22 18 56 35 74 39
+37 8 116 -2 147 -19z m24 -100 c5 -4 7 -18 5 -31 -4 -30 -58 -47 -151 -48 -53
+-1 -69 2 -74 15 -9 25 37 63 87 73 48 9 120 4 133 -9z m-353 -39 c28 -20 37
+-48 22 -63 -11 -11 -158 -12 -198 -2 -49 12 -16 69 48 84 45 10 98 2 128 -19z
+m354 -72 c-3 -5 -10 -7 -15 -3 -5 3 -7 10 -3 15 3 5 10 7 15 3 5 -3 7 -10 3
+-15z m-4 -39 c0 -5 -4 -10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10 10 10 6 0 10
+-4 10 -10z m-500 -10 c0 -5 -4 -10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10 10 10
+6 0 10 -4 10 -10z m484 -41 c-3 -5 -10 -7 -15 -3 -5 3 -7 10 -3 15 3 5 10 7
+15 3 5 -3 7 -10 3 -15z m-464 7 c0 -11 -19 -15 -25 -6 -3 5 1 10 9 10 9 0 16
+-2 16 -4z m445 -36 c3 -5 1 -10 -4 -10 -6 0 -11 5 -11 10 0 6 2 10 4 10 3 0 8
+-4 11 -10z m-425 -10 c0 -5 -4 -10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10 10 10
+6 0 10 -4 10 -10z m30 -40 c0 -5 -4 -10 -10 -10 -5 0 -10 5 -10 10 0 6 5 10
+10 10 6 0 10 -4 10 -10z m236 -176 c3 -19 -2 -22 -37 -26 -42 -4 -57 8 -46 36
+4 9 19 13 43 13 30 -2 38 -6 40 -23z m4 -42 c0 -5 -9 -17 -20 -27 -19 -17 -21
+-17 -41 1 l-21 19 28 6 c43 10 54 10 54 1z"/>
+                  <path d="M671 731 c-30 -5 -58 -31 -34 -31 27 0 129 23 138 31 10 10 -49 10
+-104 0z"/>
+                  <path d="M332 701 c-8 -5 15 -10 59 -14 80 -7 117 3 54 15 -55 9 -97 9 -113
+-1z"/>
+                </g>
+              </svg>
+              <span>digitale</span>
+            </div>
+
+          </h1>
+          <div className="lg:hidden flex justify-center w-full px-4">
+            <span className="text-center font-nunito text-base md:text-xl leading-relaxed max-w-md">
+              Nous accompagnons les entreprises privées, publiques
+              et les PME à bâtir des marques fortes et des solutions
+              digitales qui inspirent confiance et s'appuient sur nos
+              valeurs africaines.
+            </span>
+          </div>
+          <div className="lg:hidden flex flex-col md:flex-row md:items-center items-center justify-center w-full gap-6 md:gap-6">
+            <button className="bg-secondary flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full text-white text-sm md:text-lg font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
+              <div className="rounded-full bg-gray-100 p-1 md:p-1.5">
+                <img src="/assets/Vector.png" alt="" className="w-5 h-5 md:w-6 md:h-6" />
+              </div>
+              Donner vie à votre projet
+            </button>
+
+            {/* Carrousel avec effet de flou */}
+            <div className="relative overflow-hidden w-full max-w-sm md:max-w-md opacity-0 animate-fade-in-up [animation-delay:0.6s]">
+              {/* Effet de flou gauche */}
+              <div className="absolute left-0 top-0 bottom-0 w-8 md:w-16 bg-linear-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+
+              {/* Effet de flou droite */}
+              <div className="absolute right-0 top-0 bottom-0 w-8 md:w-16 bg-linear-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+
+              <div className="flex">
+                <div className="animate-scroll flex gap-8">
+                  <img src="/assets/logo-brand/logo-mtnd.png" alt="MTND" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+                  <img src="/assets/logo-brand/logo-agl.png" alt="AGL" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+                  <img src="/assets/logo-brand/logo-sitarail.png" alt="Sitarail" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+                  <img src="/assets/logo-brand/logo-sodexam.png" alt="Sodexam" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+                  <img src="/assets/logo-brand/logo-skan.png" alt="Skan" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+
+                  <img src="/assets/logo-brand/logo-mtnd.png" alt="MTND" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+                  <img src="/assets/logo-brand/logo-agl.png" alt="AGL" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+                  <img src="/assets/logo-brand/logo-sitarail.png" alt="Sitarail" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+                  <img src="/assets/logo-brand/logo-sodexam.png" alt="Sodexam" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+                  <img src="/assets/logo-brand/logo-skan.png" alt="Skan" className="h-8 md:h-10 object-contain grayscale hover:grayscale-0 transition-all" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      {/* Image hero en position absolue à droite */}
+      <div>
+        <HeroImage />
+      </div>
+    </div>
+  )
+}

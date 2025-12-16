@@ -27,7 +27,7 @@ export default function Trusted() {
             <div className="flex flex-col lg:flex-row items-start justify-between gap-4 lg:gap-8">
                 <div className="w-full lg:w-1/2">
                     <span className="text-xs lg:text-sm">[TÉMOIGNAGES]</span>
-                    <h2 className="font-bebas w-2/3 text-3xl sm:text-5xl lg:text-7xl pt-2 lg:pt-4">FONDÉE SUR LA CONFIANCE.</h2>
+                    <h2 className="font-bangers w-2/3 text-3xl sm:text-5xl lg:text-7xl pt-2 lg:pt-4">FONDÉE SUR LA CONFIANCE.</h2>
                 </div>
 
                 <p className="w-full lg:w-1/2 text-sm lg:text-base text-left lg:text-right lg:pt-8">
@@ -39,7 +39,7 @@ export default function Trusted() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
                 {/* Medev Card - Fixed on the left */}
                 <div className="bg-linear-to-br from-orange-500 to-orange-600 rounded-3xl p-8 lg:p-12 flex flex-col items-center justify-center text-white text-center min-h-[400px] lg:min-h-[500px]">
-                    <h3 className="text-4xl lg:text-5xl  tracking-wider mb-8 font-bebas">MEDEV GROUP</h3>
+                    <h3 className="text-4xl lg:text-5xl  tracking-wider mb-8 font-bangers">MEDEV GROUP</h3>
                     <p className="text-xl lg:text-xl mb-12 font-nunito leading-none">
                         Aider les Entreprises à promouvoir leur produit
                     </p>

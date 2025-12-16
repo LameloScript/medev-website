@@ -4,7 +4,7 @@ export default function Team() {
             <div className="lg:w-140 gap-2 flex flex-col">
                 <span>[TEAM]</span>
                 <div className="lg:w-2/3 gap-2 flex flex-col">
-                    <h2 className="font-bebas text-5xl lg:text-7xl">L'EQUIPE DERRIÈRE LES PROJETS</h2>
+                    <h2 className="font-bangers text-5xl lg:text-7xl">L'EQUIPE DERRIÈRE LES PROJETS</h2>
                     <p className="text-sm lg:text-base">
                         Découvrez les esprits créatifs qui donnent vie à votre vision. Notre équipe allie créativité, stratégie et passion pour transformer vos idées en designs percutants. Ensemble, nous concrétisons votre vision, pixel par pixel.                    </p>
                 </div>
