@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Nunito_Sans, Caesar_Dressing, Poppins, Bangers } from "next/font/google";
+import { Nunito, Caesar_Dressing, Poppins, Bangers } from "next/font/google";
 import "./globals.css";
 import Footer from "@/src/components/views/footer/footer";
 
 
-const nunitoSans = Nunito_Sans({
+const nunitoSans = Nunito({
   variable: "--font-nunito-sans",
   subsets: ["latin"],
   weight: ["300", "400", "600", "700"],
