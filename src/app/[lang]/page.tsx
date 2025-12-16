@@ -9,6 +9,14 @@ import Services from "@/src/components/views/home/services";
 import Cta from "@/src/components/views/home/cta";
 import Industry from "@/src/components/views/home/industry";
 
+// Generate static params for supported languages
+export async function generateStaticParams() {
+  return [
+    { lang: 'fr' },
+    { lang: 'en' },
+  ]
+}
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen w-full bg-white font-sans dark:bg-black">

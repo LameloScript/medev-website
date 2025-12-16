@@ -1,3 +1,7 @@
+export async function generateStaticParams() {
+  return [{ lang: 'fr' }, { lang: 'en' }]
+}
+
 export default function BlogPage() {
   return (
     <div>
