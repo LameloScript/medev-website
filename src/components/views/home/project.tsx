@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Calendar, Wallet, ShoppingCart, HeartPulse, GraduationCap, Cloud, Package, Home, Store, Hotel, Film, ArrowLeft, ArrowRight, Building2, User, FileText } from "lucide-react"
+import { Calendar, Wallet, ShoppingCart, HeartPulse, GraduationCap, Cloud, Package, Home, Store, Hotel, Film, ArrowLeft, ArrowRight, Building2, User, FileText, Shield, Zap, Landmark, Globe, HandshakeIcon } from "lucide-react"
 import {
     ToggleGroup,
     ToggleGroupItem,
@@ -22,8 +22,9 @@ import {
 
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { LoadingCarousel } from "@/components/ui/loading-carousel"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export default function project() {
@@ -45,6 +46,15 @@ export default function project() {
         solutions: [] as string[],
         message: ""
     });
+
+    // Check for pre-selected industry from sessionStorage
+    useEffect(() => {
+        const selectedIndustry = sessionStorage.getItem('selectedIndustry');
+        if (selectedIndustry) {
+            setFormData(prev => ({ ...prev, industry: selectedIndustry }));
+            sessionStorage.removeItem('selectedIndustry');
+        }
+    }, []);
 
     const steps = [
         { number: 1, title: "Choix de l'industrie", subtitle: "Sélectionnez votre secteur", icon: Building2 },
@@ -95,8 +105,8 @@ export default function project() {
     };
 
     return (
-        <div>
-            {/* 
+        <div id="project-section">
+            {/*
             <div className="flex flex-col items-center gap-4 pb-8">
                 <span className="text-center">[PROJETS]</span>
                 <div className="lg:w-2/3 gap-2 flex flex-col">
@@ -105,10 +115,10 @@ export default function project() {
                         Découvrez les esprits créatifs qui donnent vie à votre vision. Notre équipe allie créativité, stratégie et passion pour transformer vos idées en designs percutants. Ensemble, nous concrétisons votre vision, pixel par pixel.                    </p>
                 </div>
             </div>
-            
+
             */}
 
-            <div className="relative w-full bg-black flex flex-col rounded-2xl lg:flex-row gap-4 lg:gap-2 lg:h-170 overflow-hidden">
+            <div className="relative w-full bg-black flex flex-col  lg:flex-row gap-4 lg:gap-2 lg:h-170 overflow-hidden mt-40">
                 {/* Image de fond */}
                 <div
                     className="absolute inset-0 rounded-2xl pointer-events-none"
@@ -121,7 +131,7 @@ export default function project() {
                 />
 
                 {/* Contenu par-dessus le background */}
-                <div className="relative z-10 flex flex-col  lg:flex-row w-full px-4 sm:px-8 lg:px-14 py-8 lg:py-14 gap-8 lg:gap-30">
+                <div className="relative z-10 flex flex-col  lg:flex-row w-full px-4 sm:px-8 lg:px-14 py-18 lg:py-14 gap-8 lg:gap-30">
                     <div className="flex flex-col justify-between w-full lg:w-1/3 gap-6 lg:gap-8">
                         <div className="space-y-4">
                             <h3 className="font-bangers text-2xl sm:text-5xl lg:text-6xl text-white leading-none">Prêts à discuter
@@ -132,25 +142,19 @@ export default function project() {
                             </p>
                         </div>
                         <div className="lg:flex flex-col gap-4 hidden">
-                            
-                            <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
-                                <Avatar>
-                                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                    <AvatarFallback>CN</AvatarFallback>
+
+                            <div className="flex -space-x-3">
+                                <Avatar className="ring-2 ring-background border-2 border-white bg-white">
+                                    <AvatarImage src="/assets/logo-brand/logo-mtnd.png" alt="MTN" className="object-contain p-1" />
+                                    <AvatarFallback className="bg-secondary text-white font-bold">MT</AvatarFallback>
                                 </Avatar>
-                                <Avatar>
-                                    <AvatarImage
-                                        src="https://github.com/maxleiter.png"
-                                        alt="@maxleiter"
-                                    />
-                                    <AvatarFallback>LR</AvatarFallback>
+                                <Avatar className="ring-2 ring-background border-2 border-white bg-white">
+                                    <AvatarImage src="/assets/logo-brand/logo-agl.png" alt="AGL" className="object-contain p-1" />
+                                    <AvatarFallback className="bg-secondary text-white font-bold">AG</AvatarFallback>
                                 </Avatar>
-                                <Avatar>
-                                    <AvatarImage
-                                        src="https://github.com/evilrabbit.png"
-                                        alt="@evilrabbit"
-                                    />
-                                    <AvatarFallback>ER</AvatarFallback>
+                                <Avatar className="ring-2 ring-background border-2 border-white bg-white">
+                                    <AvatarImage src="/assets/logo-brand/logo-sitarail.png" alt="Sitarail" className="object-contain p-1" />
+                                    <AvatarFallback className="bg-secondary text-white font-bold">SR</AvatarFallback>
                                 </Avatar>
                             </div>
                             <span className="text-white font-bangers text-xs lg:text-xl">+56 Entreprises nous ont fait confiance </span>
@@ -280,6 +284,46 @@ export default function project() {
                                         >
                                             <Film className="w-3 h-3 lg:w-4 lg:h-4" />
                                             Showbizz
+                                        </ToggleGroupItem>
+                                        <ToggleGroupItem
+                                            value="insurance"
+                                            aria-label="Assurances"
+                                            className="bg-white text-black hover:bg-[#FF6300] hover:text-white data-[state=on]:bg-[#FF6300] data-[state=on]:text-white transition-colors text-xs lg:text-base px-2 py-1 lg:px-3 lg:py-2"
+                                        >
+                                            <Shield className="w-3 h-3 lg:w-4 lg:h-4" />
+                                            Assurances
+                                        </ToggleGroupItem>
+                                        <ToggleGroupItem
+                                            value="energy"
+                                            aria-label="Énergies"
+                                            className="bg-white text-black hover:bg-[#FF6300] hover:text-white data-[state=on]:bg-[#FF6300] data-[state=on]:text-white transition-colors text-xs lg:text-base px-2 py-1 lg:px-3 lg:py-2"
+                                        >
+                                            <Zap className="w-3 h-3 lg:w-4 lg:h-4" />
+                                            Énergies
+                                        </ToggleGroupItem>
+                                        <ToggleGroupItem
+                                            value="government"
+                                            aria-label="Gouvernement"
+                                            className="bg-white text-black hover:bg-[#FF6300] hover:text-white data-[state=on]:bg-[#FF6300] data-[state=on]:text-white transition-colors text-xs lg:text-base px-2 py-1 lg:px-3 lg:py-2"
+                                        >
+                                            <Landmark className="w-3 h-3 lg:w-4 lg:h-4" />
+                                            Gouvernement & Instituts publics
+                                        </ToggleGroupItem>
+                                        <ToggleGroupItem
+                                            value="multinational"
+                                            aria-label="Multinationales"
+                                            className="bg-white text-black hover:bg-[#FF6300] hover:text-white data-[state=on]:bg-[#FF6300] data-[state=on]:text-white transition-colors text-xs lg:text-base px-2 py-1 lg:px-3 lg:py-2"
+                                        >
+                                            <Globe className="w-3 h-3 lg:w-4 lg:h-4" />
+                                            Multinationales
+                                        </ToggleGroupItem>
+                                        <ToggleGroupItem
+                                            value="ngo"
+                                            aria-label="ONG"
+                                            className="bg-white text-black hover:bg-[#FF6300] hover:text-white data-[state=on]:bg-[#FF6300] data-[state=on]:text-white transition-colors text-xs lg:text-base px-2 py-1 lg:px-3 lg:py-2"
+                                        >
+                                            <HandshakeIcon className="w-3 h-3 lg:w-4 lg:h-4" />
+                                            ONG & Organisations internationales
                                         </ToggleGroupItem>
                                     </ToggleGroup>
                                 </div>

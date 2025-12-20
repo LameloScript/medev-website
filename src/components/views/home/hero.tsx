@@ -23,8 +23,9 @@ export default function Hero() {
       <div className="absolute inset-0 bg-white/10" />
 
       {/* Header */}
-      <div className="relative z-20 container-fixed px-4 ">
-        <div className="flex items-center justify-between lg:py-4 py-4 lg:px-8">
+      <div className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-sm ">
+        <div className="container-fixed px-4">
+          <div className="flex items-center justify-between lg:py-4 py-4 lg:px-8">
           <div className="flex items-center gap-1">
             <a href="/fr/" className="flex items-center gap-1">
               <img src="/assets/logo-medev-drk.svg" alt="" className="w-6" />
@@ -40,6 +41,7 @@ export default function Hero() {
           >
             <span className="text-sm lg:text-base font-nunito">[ Menu ]</span>
           </button>
+        </div>
         </div>
       </div>
 

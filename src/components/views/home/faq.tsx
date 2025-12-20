@@ -8,7 +8,7 @@ import {
 export default function Faq() {
     return (
 
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 h-120">
+        <div className="min-h-screen flex flex-col lg:flex-row lg:gap-16 lg:py-22 py-14 px-4 lg:px-20 mt-40">
             <div className="lg:w-1/2 gap-2 flex flex-col">
                 <span>[FAQ]</span>
                 <div className="lg:w-2/3 gap-2 flex flex-col">
@@ -18,7 +18,7 @@ export default function Faq() {
                     </p>
                 </div>
             </div>
-            <div className="w-1/2">
+            <div className="w-full lg:w-1/2 mt-8 lg:mt-0">
                 <Accordion
                     type="single"
                     collapsible

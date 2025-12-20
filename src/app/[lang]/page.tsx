@@ -10,6 +10,7 @@ import Cta from "@/src/components/views/home/cta";
 import Industry from "@/src/components/views/home/industry";
 import ChooseUs from "@/src/components/views/home/choose-us";
 import Distinctions from "@/src/components/views/home/distinctions";
+import TeamTest from "@/src/components/views/home/team-test";
 
 
 
@@ -33,14 +34,17 @@ export default function Home() {
       <Cta />
       <Industry />
       <ChooseUs />
-      <Distinctions />
+      <TeamTest/>
       <Project />
-      <Trusted />
-      <Team />
+      <Faq /> 
+      
+     
       <div className="container-fixed">
         <div className="flex flex-col gap-24 py-22 px-4 lg:px-20">
 
-          {/* <Faq /> */}
+          {/* 
+          <Trusted />
+          */}
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito, Caesar_Dressing, Poppins, Bangers } from "next/font/google";
 import "./globals.css";
 import Footer from "@/src/components/views/footer/footer";
+import HeaderWrapper from "@/src/components/views/header/header-wrapper";
 
 
 const nunitoSans = Nunito({
@@ -48,6 +49,7 @@ export default function RootLayout({
         className={`${nunitoSans.variable} ${caesarDressing.variable} ${poppins.variable} ${bangers.variable} antialiased m-0 px-0`}
       >
         <div className="w-full min-h-screen flex flex-col">
+          <HeaderWrapper />
           <main className="flex-1">
             {children}
           </main>

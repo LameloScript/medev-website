@@ -2,7 +2,7 @@ export default function cta() {
     return (
         <div className="flex flex-col gap-24 py-22 px-4 bg-cover bg-center items-center lg:mt-40 justify-center bg-no-repeat lg:bg-[url('/assets/cta-1.png')] bg-[url('/assets/cta-2.png')]">
             <div className="flex flex-col items-center justify-center lg:w-1/2">
-                <span className="font-bangers lg:text-5xl text-2xl  lg:mt-6 text-center lg:leading-14 text-white px-14">
+                <span className="font-bangers lg:text-5xl text-2xl  lg:mt-6 text-center lg:leading-14 text-white lg:px-14">
                     Confiez vos projets à des experts et gagnez du temps dès aujourd’hui.
                 </span>
                 <div className="flex items-center justify-center mt-6">

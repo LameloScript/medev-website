@@ -10,7 +10,7 @@ export default function Header() {
     return (
         <div>
             {/* Header */}
-            <div className=" flex items-center justify-between lg:py-4 py-4 px-4 lg:px-8 z-10 ">
+            <div className="fixed top-0 left-0 right-0 flex items-center justify-between lg:py-4 py-4 px-4 lg:px-8 z-40 bg-white shadow-sm">
                 <div className="flex items-center gap-1 ">
                     <a href="/fr/" className="flex items-center gap-1"><img src="/assets/logo-medev-drk.svg" alt="" className="w-6" />
                         <span className="text-sm lg:text-base font-nunito">Medev Group Inc.</span></a>
@@ -31,6 +31,12 @@ export default function Header() {
                 className={`fixed top-0 left-0 z-50 w-full flex flex-col gap-20 bg-white justify-between overflow-hidden h-screen transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'
                     }`}
             >
+                {/* Mask SVG en arrière-plan */}
+                <img
+                    src="/assets/mask.svg"
+                    alt=""
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain opacity-10 pointer-events-none z-0"
+                />
                 <div className="container-fixed">
                     <div className="flex items-center justify-between lg:py-4 py-4 px-4 lg:px-8 z-10">
                         <div className="flex items-center gap-1 ">

@@ -36,11 +36,11 @@ export default function Menu() {
     return (
         <div className="flex flex-col gap-3 lg:gap-4" >
             {
-                footerItems.map((item, index) => (
+                footerItems.map((item) => (
                     <a
                         key={item.label}
                         href={item.href}
-                        className="flex flex-col items-center font-bangers font-bold text-4xl lg:text-5xl "
+                        className="flex flex-col items-center font-bangers font-bold text-4xl lg:text-5xl transition-all duration-300 hover:scale-110 hover:text-blue-600"
 
                     >
                         {item.label}
