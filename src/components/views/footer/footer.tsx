@@ -17,7 +17,7 @@ export default function Footer() {
 
 
                     </div>
-                    <div className="text-white lg:py-20 py-8 px-4 pt-2 lg:px-8 flex flex-col  gap-4 lg:gap-6">
+                    <div className="text-white  px-4 lg:px-8 flex flex-col  gap-4 lg:gap-6">
                         <Menu />
                     </div>
                     <div className="flex flex-col lg:flex-row items-center justify-between lg:pt-9 py-4 px-4  bg-black">

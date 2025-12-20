@@ -36,7 +36,7 @@ const industries = [
     {
         icon: Package,
         title: "Logistique",
-        subtitle: "Transport",
+        subtitle: "",
         value: "logistics"
     },
     {
