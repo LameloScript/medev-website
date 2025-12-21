@@ -36,6 +36,10 @@ const bangers = Bangers({
 export const metadata: Metadata = {
   title: "Medev",
   description: "Medev is a platform that helps developers to build their projects faster and easier.",
+  icons: {
+    icon: "/assets/logo-medev-drk.svg",
+    shortcut: "/assets/logo-medev-drk.svg"
+  }
 };
 
 export default function RootLayout({
