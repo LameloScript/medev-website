@@ -13,7 +13,7 @@ export default function Menu() {
         },
 
         {
-            label: "VENTURES", href: "#"
+            label: "VENTURES", href: "/fr/ventures"
         },
 
         {

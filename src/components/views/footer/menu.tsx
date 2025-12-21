@@ -4,23 +4,23 @@ export default function Menu() {
 
     const footerItems = [
         {
-            label: "Projects", href: "#"
+            label: "Projects", href: "/fr/projects"
         },
 
         {
-            label: "Qui sommes nous ?", href: "#"
+            label: "Qui sommes nous ?", href: "/fr/A-propos"
         },
 
         {
-            label: "Blog", href: "#"
+            label: "Blog", href: "/fr/Blog"
         },
 
         {
-            label: "Ventures", href: "#"
+            label: "Ventures", href: "/fr/ventures"
         },
 
         {
-            label: "Nous contacter", href: "#"
+            label: "Nous contacter", href: "/fr/Contact"
         },
 
 

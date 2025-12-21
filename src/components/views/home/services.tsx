@@ -42,12 +42,14 @@ export default function services() {
                 </div>
             </div>
             <div className="flex items-center justify-center mt-6">
-                <button className="bg-secondary flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
-                    <div className="rounded-full bg-gray-100 p-1">
-                        <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
-                    </div>
-                    Donner vie à votre projet
-                </button>
+                <a href="/fr/Contact">
+                    <button className="bg-secondary flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
+                        <div className="rounded-full bg-gray-100 p-1">
+                            <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
+                        </div>
+                        Donner vie à votre projet
+                    </button>
+                </a>
             </div>
         </div>
     )

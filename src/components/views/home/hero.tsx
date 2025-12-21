@@ -115,12 +115,14 @@ export default function Hero() {
                   valeurs africaines.
               </span>
             </div>
-            <button className="bg-secondary flex items-center gap-2 px-4 py-2 mt-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
-              <div className="rounded-full bg-gray-100 p-1">
-                <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
-              </div>
-              Donner vie à votre projet
-            </button>
+            <a href="/fr/Contact">
+              <button className="bg-secondary flex items-center gap-2 px-4 py-2 mt-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
+                <div className="rounded-full bg-gray-100 p-1">
+                  <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
+                </div>
+                Donner vie à votre projet
+              </button>
+            </a>
             {/* Carrousel avec effet de flou */}
             <div className="relative mt-6 mb-16 lg:mb-0 overflow-hidden max-w-2xl opacity-0 animate-fade-in-up [animation-delay:0.6s]">
               {/* Effet de flou gauche */}

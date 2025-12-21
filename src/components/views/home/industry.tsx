@@ -157,7 +157,7 @@ export default function Industry() {
                     Chaque projet est unique. Discutons ensemble de vos besoins spécifiques et découvrons comment nous pouvons vous accompagner dans votre transformation digitale.
                 </p>
                 <a
-                    href="#contact"
+                    href="/fr/Contact"
                     className="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 sm:py-4 px-8 sm:px-12 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base lg:text-lg"
                 >
                     Parlons de votre projet
