@@ -34,12 +34,6 @@ const teamMembers: TeamMember[] = [
     title: 'CTO en IoT',
     description: 'Électrotechnicien, développeur système IoT',
     image: '/assets/team/Paul cedric.avif'
-  },
-  {
-    name: 'SANLE VALENT',
-    title: 'Market Analyst',
-    description: 'Chef de projet IT, testeur',
-    image: '/assets/team/Valent sanle.avif'
   }
 ]
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
 import Menu from "@/src/components/views/header/menu";
 import { Menu1 } from "@/src/components/views/footer/menu";
 import HeroImage from "@/src/components/views/home/hero-image";
@@ -10,6 +9,7 @@ import Title from "./hero/title";
 
 export default function Hero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [darkMode] = useState(false);
 
   return (
     <div className="relative h-screen flex flex-col overflow-hidden">
@@ -23,66 +23,71 @@ export default function Hero() {
       <div className="absolute inset-0 bg-white/10" />
 
       {/* Header */}
-      <div className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-sm ">
-        <div className="container-fixed px-4">
-          <div className="flex items-center justify-between lg:py-4 py-4 lg:px-8">
-          <div className="flex items-center gap-1">
-            <a href="/fr/" className="flex items-center gap-1">
-              <img src="/assets/logo-medev-drk.svg" alt="" className="w-6" />
-              <span className="text-sm lg:text-base font-nunito">Medev Group</span>
-            </a>
-          </div>
-          <div className="text-xs lg:text-sm font-nunito hidden lg:flex">
-            ©2025
-          </div>
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            className="cursor-pointer"
-          >
-            <span className="text-sm lg:text-base font-nunito">[ Menu ]</span>
-          </button>
-        </div>
-        </div>
-      </div>
-
-      {/* Menu déroulant */}
-      <div
-        className={`fixed top-0 left-0 z-50 w-full flex flex-col gap-20 bg-white justify-between overflow-hidden min-h-screen transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'
-          }`}
-      >
-        <div className="container-fixed">
-          <div className="flex items-center justify-between lg:py-4 py-4 px-4 lg:px-8 z-10">
-            <div className="flex items-center gap-1">
-              <a href="/fr/" className="flex items-center gap-1">
-                <img src="/assets/logo-medev-drk.svg" alt="" className="w-6" />
-                <span className="text-sm lg:text-base font-nunito">Medev Group</span>
-              </a>
-            </div>
-            <div className="text-xs lg:text-sm font-nunito hidden lg:flex">
-              ©2025
-            </div>
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="flex items-center justify-center cursor-pointer"
-            >
-              <span className="text-sm lg:text-base font-nunito">[ x ]</span>
-            </button>
-          </div>
-        </div>
-        <div className="container-fixed mx-auto flex items-center justify-center">
-          <Menu />
-        </div>
-        <div className="container-fixed mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-between lg:py-9 py-4 px-4 lg:px-8 z-10 bg-neutral-100">
-            <span className="text-sm lg:text-base text-center">
-              © 2025 Medev Group Inc. Tous droits réservés.
-            </span>
-            <div>
-              <Menu1 />
-            </div>
-          </div>
-        </div>
-      </div>
+     
+                  <div className={`fixed top-0 left-0 right-0 z-40 ${darkMode ? 'bg-black text-white' : 'bg-white'}`}>
+                      <div className="container-fixed px-4">
+                          <div className="flex items-center justify-between lg:py-4 py-4 lg:px-8">
+                              <div className="flex items-center gap-1">
+                                  <a href="/fr/" className="flex items-center gap-1">
+                                      <img src={darkMode ? "/assets/logo-medev-blanc.svg" : "/assets/logo-medev-drk.svg"} alt="" className="w-6" />
+                                      <span className="text-sm lg:text-base font-nunito">Medev Group</span>
+                                  </a>
+                              </div>
+                              <div className="text-xs lg:text-sm font-nunito hidden lg:flex">
+                                  ©2025
+                              </div>
+                              <button
+                                  onClick={() => setIsMenuOpen(true)}
+                                  className="cursor-pointer"
+                              >
+                                  <span className="text-sm lg:text-base font-nunito">[ Menu ]</span>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+      
+                  {/* Menu déroulant */}
+                  <div
+                      className={`fixed inset-0 z-50 w-full flex flex-col gap-8 lg:gap-20 bg-white justify-between overflow-y-auto h-dvh min-h-screen transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'
+                          }`}
+                  >
+                      {/* Mask SVG en arrière-plan */}
+                      <img
+                          src="/assets/mask.svg"
+                          alt=""
+                          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-contain opacity-10 pointer-events-none z-0"
+                      />
+                      <div className="container-fixed">
+                          <div className="flex items-center justify-between lg:py-4 py-4 px-4 lg:px-8 z-10">
+                              <div className="flex items-center gap-1 ">
+                                  <a href="/fr/" className="flex items-center gap-1"><img src="/assets/logo-medev-drk.svg" alt="" className="w-6" />
+                                      <span className="text-sm lg:text-base font-nunito">Medev Group</span></a>
+                              </div>
+                              <div className="text-xs lg:text-sm font-nunito hidden lg:flex">
+                                  ©2025
+                              </div>
+                              <button
+                                  onClick={() => setIsMenuOpen(false)}
+                                  className="flex items-center justify-center cursor-pointer"
+                              >
+                                  <span className="text-sm lg:text-base font-nunito">[ x ]</span>
+                              </button>
+                          </div>
+                      </div>
+                      <div className="container-fixed flex items-center justify-center">
+                          <Menu />
+                      </div>
+                      <div className="container-fixed">
+                          <div className="flex flex-col lg:flex-row items-center justify-between lg:py-9 py-4 px-4 lg:px-8 z-10 bg-neutral-100">
+                              <span className="text-sm lg:text-base text-center">
+                                  © 2025 Medev Group Inc. Tous droits réservés.
+                              </span>
+                              <div className="">
+                                  <Menu1 />
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
       {/* Content */}
       <div className="lg:flex  lg:flex-col  items-center  justify-between px-4 lg:px-8">
