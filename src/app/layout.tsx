@@ -3,6 +3,7 @@ import { Nunito, Caesar_Dressing, Poppins, Bangers } from "next/font/google";
 import "./globals.css";
 import Footer from "@/src/components/views/footer/footer";
 import HeaderWrapper from "@/src/components/views/header/header-wrapper";
+import BackToTopButton from "@/src/components/others-ui/back-to-top";
 
 
 const nunitoSans = Nunito({
@@ -58,6 +59,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <BackToTopButton />
         </div>
       </body>
     </html>
