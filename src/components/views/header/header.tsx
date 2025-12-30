@@ -14,7 +14,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
     return (
         <div>
             {/* Header */}
-            <div className={`fixed top-0 left-0 right-0 z-40 ${darkMode ? 'bg-black text-white' : 'bg-white'}`}>
+            <div className={`fixed top-0 left-0 right-0 z-40 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
                 <div className="container-fixed px-4">
                     <div className="flex items-center justify-between lg:py-4 py-4 lg:px-8">
                         <div className="flex items-center gap-1">
@@ -38,8 +38,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
 
             {/* Menu déroulant */}
             <div
-                className={`fixed inset-0 z-50 w-full flex flex-col gap-8 lg:gap-20 bg-white justify-between overflow-y-auto h-dvh min-h-screen transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'
-                    }`}
+                className={`fixed inset-0 z-50 w-full flex flex-col gap-8 lg:gap-20 bg-white text-black justify-between overflow-y-auto h-dvh min-h-screen transition-transform duration-500 ease-in-out ${isMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
             >
                 {/* Mask SVG en arrière-plan */}
                 <img
@@ -68,7 +67,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
                     <Menu />
                 </div>
                 <div className="container-fixed">
-                    <div className="flex flex-col lg:flex-row items-center justify-between lg:py-9 py-4 px-4 lg:px-8 z-10 bg-neutral-100">
+                    <div className="flex flex-col lg:flex-row items-center justify-between lg:py-9 py-4 px-4 lg:px-8 z-10 bg-neutral-100 text-black">
                         <span className="text-sm lg:text-base text-center">
                             © 2025 Medev Group Inc. Tous droits réservés.
                         </span>

@@ -1,6 +1,7 @@
 'use client'
 
 import { blogArticles } from '@/src/data/blog'
+import CtaButton from '@/src/components/others-ui/cta-button'
 
 export default function BlogPreview() {
   const previewArticles = blogArticles.filter(a => !a.featured).slice(0, 3)
@@ -92,15 +93,9 @@ export default function BlogPreview() {
         </div>
 
         <div className="flex items-center justify-center mt-12">
-          <a
-            href="/fr/Blog"
-            className="bg-secondary px-6 py-3 rounded-full text-white font-bangers hover:bg-orange-600 transition-colors"
-          >
-            Voir tous les articles
-          </a>
+          <CtaButton href="/fr/Blog" label="Voir tous les articles" />
         </div>
       </div>
     </section>
   )
 }
-

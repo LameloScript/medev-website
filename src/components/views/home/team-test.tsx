@@ -194,7 +194,7 @@ export default function TeamTest() {
           <p className="text-black/80 text-sm lg:text-base mb-4">
             Passionné par le digital ? Rejoignez-nous et créez l'avenir ensemble.
           </p>
-          <button className="bg-secondary flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit mx-auto hover:bg-secondary/90 transition-all duration-300">
+          <button className="bg-secondary hover:bg-black transition-colors duration-200 flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit mx-auto">
             <div className="rounded-full bg-gray-100 p-1">
               <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
             </div>

@@ -109,19 +109,18 @@ export default function Hero() {
                   <img src="/assets/mask.png" alt="" className="lg:w-18 w-6 sm:w-8" />
                   digitale .
                 </div>
-              </div>
-
-            </h1>
-            <div className="lg:hidden flex justify-center w-full px-8">
-              <span className="text-center font-nunito text-sm sm:text-sm md:text-base pt-4 leading-relaxed max-w-xs sm:max-w-sm md:max-w-md">
-                  Nous accompagnons les entreprises privées, publiques
-                  et les PME à bâtir des marques fortes et des solutions
-                  digitales qui inspirent confiance et s'appuient sur nos
-                  valeurs africaines.
-              </span>
             </div>
-            <a href="/fr/Contact">
-              <button className="bg-secondary flex items-center gap-2 px-4 py-2 mt-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
+          </h1>
+          <div className="lg:hidden flex justify-center w-full px-8">
+            <span className="text-center font-nunito text-sm sm:text-sm md:text-base pt-4 leading-relaxed max-w-xs sm:max-w-sm md:max-w-md">
+                Nous accompagnons les entreprises privées, publiques
+                et les PME à bâtir des marques fortes et des solutions
+                digitales qui inspirent confiance et s'appuient sur nos
+                valeurs africaines.
+            </span>
+          </div>
+          <a href="/fr/Contact">
+              <button className="bg-secondary hover:bg-black transition-colors duration-200 group flex items-center gap-2 px-4 py-2 mt-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
                 <div className="rounded-full bg-gray-100 p-1">
                   <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
                 </div>

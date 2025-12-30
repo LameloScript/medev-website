@@ -156,11 +156,13 @@ export default function Industry() {
                 <p className="text-gray-600 font-nunito text-sm sm:text-base lg:text-lg mb-6 lg:mb-8 px-4">
                     Chaque projet est unique. Discutons ensemble de vos besoins spécifiques et découvrons comment nous pouvons vous accompagner dans votre transformation digitale.
                 </p>
-                <a
-                    href="/fr/Contact"
-                    className="bg-secondary hover:bg-secondary/90 text-white font-bold py-3 sm:py-4 px-8 sm:px-12 rounded-full transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl text-sm sm:text-base lg:text-lg"
-                >
-                    Parlons de votre projet
+                <a href="/fr/Contact">
+                    <button className="bg-secondary hover:bg-black transition-colors duration-200 group flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 rounded-full text-white text-sm sm:text-base lg:text-lg font-bangers w-fit shadow-lg hover:shadow-xl">
+                        <div className="rounded-full bg-gray-100 p-1 sm:p-1.5 transition-transform duration-300 group-hover:-translate-x-1 group-active:-translate-x-2">
+                            <img src="/assets/Vector.png" alt="" className="w-5 h-5 sm:w-6 sm:h-6" />
+                        </div>
+                        Parlons de votre projet
+                    </button>
                 </a>
             </div>
         </div>

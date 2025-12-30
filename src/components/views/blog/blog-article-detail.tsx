@@ -294,7 +294,7 @@ export default function BlogArticleDetail({ slug }: { slug: string }) {
               Notre équipe d'experts est prête à transformer vos idées en solutions innovantes.
             </p>
             <a href="/fr/Contact">
-              <button className="bg-secondary flex items-center gap-2 px-6 py-3 rounded-full text-white text-base font-bangers hover:bg-orange-600 transition-colors mx-auto">
+              <button className="bg-secondary hover:bg-black transition-colors duration-200 flex items-center gap-2 px-6 py-3 rounded-full text-white text-base font-bangers mx-auto">
                 <div className="rounded-full bg-gray-100 p-1">
                   <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
                 </div>

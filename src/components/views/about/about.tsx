@@ -363,16 +363,16 @@ export default function Aboutus() {
           <span className="font-bangers lg:text-5xl text-2xl lg:mt-6 text-center lg:leading-14 text-white lg:px-14">
             Confiez vos projets à des experts et gagnez du temps dès aujourd'hui.
           </span>
-          <div className="flex items-center justify-center mt-6">
-            <a href="/fr/Contact">
-              <button className="bg-primary flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
-                <div className="rounded-full bg-gray-100 p-1">
-                  <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
-                </div>
-                réservez un call dès maintenant
-              </button>
-            </a>
-          </div>
+        <div className="flex items-center justify-center mt-6">
+          <a href="/fr/Contact">
+            <button className="bg-secondary hover:bg-black transition-colors duration-200 group flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
+              <div className="rounded-full bg-gray-100 p-1 md:p-1.5 transition-transform duration-300 group-hover:-translate-x-1 group-active:-translate-x-2">
+                <img src="/assets/Vector.png" alt="" className="w-5 h-5 md:w-6 md:h-6" />
+              </div>
+              réservez un call dès maintenant
+            </button>
+          </a>
+        </div>
         </div>
         <div className="absolute right-0 lg:w-126 lg:flex hidden -translate-y-1">
           <img src="/assets/mask-3.png" alt="" />

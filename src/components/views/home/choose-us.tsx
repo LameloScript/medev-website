@@ -1,3 +1,14 @@
+"use client";
+
+import Autoplay from "embla-carousel-autoplay";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 export default function ChooseUs() {
   const items = [
     {
@@ -50,13 +61,46 @@ export default function ChooseUs() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 ">
+      <div className="mt-6 md:hidden">
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          plugins={[
+            Autoplay({
+              delay: 2000,
+              stopOnInteraction: false,
+            }),
+          ]}
+        >
+          <CarouselContent>
+            {items.map((item, idx) => (
+              <CarouselItem key={idx} className="pl-4">
+                <div
+                  className={`${item.bg} rounded-2xl p-6 relative flex flex-col min-h-[280px]`}
+                >
+                  <span className="font-bangers text-3xl leading-tight max-w-[18ch]">
+                    {item.title}
+                  </span>
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="absolute bottom-0 right-0 w-40 h-auto object-contain"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 backdrop-blur-sm" />
+          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 backdrop-blur-sm" />
+        </Carousel>
+      </div>
+
+      <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6">
         {items.map((item, idx) => (
           <div
             key={idx}
             className={`${item.bg} rounded-2xl p-6 md:p-8 lg:pl-8 lg:pt-8 relative flex flex-col min-h-[280px] md:min-h-80 lg:min-h-[250px]`}
           >
-            <span className="font-bangers text-3xl  leading-tight max-w-[18ch]">
+            <span className="font-bangers text-3xl leading-tight max-w-[18ch]">
               {item.title}
             </span>
             <img

@@ -217,7 +217,7 @@ export default function ContactForm() {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    className="bg-secondary flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit hover:bg-secondary/90 transition-colors"
+                    className="bg-secondary hover:bg-black transition-colors duration-200 flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit"
                   >
                     <div className="rounded-full bg-gray-100 p-1">
                       <img src="/assets/Vector.png" alt="" className="w-5 h-5" />

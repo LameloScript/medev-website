@@ -1,6 +1,6 @@
 export default function Team() {
     return (
-        <div className="container-fixed py-22 px-4 lg:px-20 relative z-10">
+        <div className="container-fixed lg:py-22 px-4 lg:px-20 relative z-10">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-start justify-between">
                 <div className="flex flex-col gap-2 lg:w-1/2">
                     <span className="text-black text-xs lg:text-sm">[TEAM]</span>

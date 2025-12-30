@@ -287,9 +287,9 @@ export default function VenturesContent() {
               Partagez votre idée avec nous et construisons ensemble l'avenir de l'Afrique digitale.
             </p>
             <a href="/fr/Contact">
-              <button className="bg-secondary flex items-center gap-2 px-6 py-3 rounded-full text-white text-base font-bangers w-fit hover:bg-orange-600 transition-colors mx-auto">
-                <div className="rounded-full bg-gray-100 p-1">
-                  <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
+              <button className="bg-secondary hover:bg-black transition-colors duration-200 group flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 rounded-full text-white text-base md:text-lg font-bangers w-fit mx-auto">
+                <div className="rounded-full bg-gray-100 p-1 md:p-1.5 transition-transform duration-300 group-hover:-translate-x-1 group-active:-translate-x-2">
+                  <img src="/assets/Vector.png" alt="" className="w-5 h-5 md:w-6 md:h-6" />
                 </div>
                 Contactez-nous
               </button>

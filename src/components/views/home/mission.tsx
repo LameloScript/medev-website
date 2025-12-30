@@ -103,9 +103,14 @@ export default function Missions() {
                   font confiance sur le long terme.
                 </p>
               </div>
-              <button className="mt-4 bg-[#FF6300] text-white px-4 py-2 lg:px-5 lg:py-2.5 rounded-full text-xs lg:text-sm font-medium hover:bg-orange-600 transition-colors w-fit">
-                Prendre RDV →
-              </button>
+              <a href="/fr/Contact">
+                <button className="mt-4 bg-secondary hover:bg-black transition-colors duration-200 group flex items-center gap-2 px-6 py-3 lg:px-8 lg:py-4 rounded-full text-white text-sm lg:text-base font-bangers w-fit">
+                  <div className="rounded-full bg-gray-100 p-1 lg:p-1.5 transition-transform duration-300 group-hover:-translate-x-1 group-active:-translate-x-2">
+                    <img src="/assets/Vector.png" alt="" className="w-5 h-5 lg:w-6 lg:h-6" />
+                  </div>
+                  Prendre RDV
+                </button>
+              </a>
             </div>
 
             {/* Card 4 - Total satisfied clients */}

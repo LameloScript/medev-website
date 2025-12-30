@@ -341,7 +341,7 @@ export default function ProjectsContent() {
                 Notre équipe d'experts est prête à vous accompagner de l'idée à la mise en production.
               </p>
               <a href="/fr/Contact">
-                <button className="bg-secondary inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-full text-white text-base md:text-lg font-bangers hover:bg-orange-600 transition-all hover:scale-105">
+                <button className="bg-secondary hover:bg-black transition-colors duration-200 inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-full text-white text-base md:text-lg font-bangers hover:scale-105">
                   <div className="rounded-full bg-white p-2">
                     <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
                   </div>

@@ -36,7 +36,7 @@ export default function yproject() {
                     </p>
                     <div className="flex items-center justify-center mt-6">
                         <a href="/fr/projects">
-                            <button className="bg-secondary flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
+                            <button className="bg-secondary hover:bg-black transition-colors duration-200 flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
                                 <div className="rounded-full bg-gray-100 p-1">
                                     <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
                                 </div>
