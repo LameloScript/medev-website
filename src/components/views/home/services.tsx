@@ -26,14 +26,14 @@ export default function services() {
       bg: "bg-[#FFE6D5]",
     },
     {
-      title: "GEOSPATIALe",
+      title: "géomatique",
       img: "/assets/service-4.png",
       bg: "bg-[#FBFBFB]",
     },
   ];
 
   return (
-    <div className="bg-black min-h-screen flex flex-col gap-6 lg:gap-24 py-22 px-4 lg:px-20">
+    <div id="services" className="bg-black min-h-screen flex flex-col gap-6 lg:gap-24 py-22 px-4 lg:px-20">
       <div className="flex flex-col items-start lg:items-center justify-center">
         <span className="text-white text-xs lg:text-sm text-start lg:text-center">
           [NOS SERVICES]

@@ -201,8 +201,8 @@ export default function Aboutus() {
                   <p className="text-gray-300 text-sm lg:text-base font-nunito">
                     Spécialisés en développement web & mobile, automatisation, IA, IoT et géomatique
                   </p>
-                  <a href="/fr/Contact" className="text-white underline hover:text-secondary transition-colors inline-block font-nunito">
-                    Découvrir nos services →
+                  <a href="/fr#services" className="text-white underline hover:text-secondary transition-colors inline-block font-nunito">
+                    Découvrez nos services →
                   </a>
                 </div>
               </div>

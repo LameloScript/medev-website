@@ -2,6 +2,7 @@
 
 import Header from '../header/header'
 import Breadcrumb from '@/components/ui/breadcrumb'
+import { useEffect, useState } from 'react'
 
 interface Article {
   slug: string
@@ -156,6 +157,25 @@ const articles: { [key: string]: Article } = {
 
 export default function BlogArticleDetail({ slug }: { slug: string }) {
   const article = articles[slug] || articles['ia-developpement-africain'] // Fallback
+  const [currentUrl, setCurrentUrl] = useState('')
+  const [copied, setCopied] = useState(false)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.href)
+    }
+  }, [])
+  const encodedUrl = encodeURIComponent(currentUrl)
+  const encodedTitle = encodeURIComponent(article.title)
+  const linkedinUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedTitle}`
+  const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`
+  const twitterUrl = `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(currentUrl)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {}
+  }
 
   return (
     <div className="bg-white text-gray-900 min-h-screen">
@@ -268,15 +288,36 @@ export default function BlogArticleDetail({ slug }: { slug: string }) {
           {/* Share Section */}
           <div className="py-8 border-t border-gray-200">
             <h4 className="font-nunito font-semibold mb-4 text-gray-900">Partager cet article :</h4>
-            <div className="flex gap-4">
-              <button className="px-6 py-3 bg-blue-600 text-white rounded-full font-nunito hover:bg-blue-700 transition-colors">
+            <div className="flex flex-wrap gap-4 items-center">
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-blue-600 text-white rounded-full font-nunito hover:bg-blue-700 transition-colors"
+              >
                 LinkedIn
-              </button>
-              <button className="px-6 py-3 bg-green-600 text-white rounded-full font-nunito hover:bg-green-700 transition-colors">
+              </a>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-green-600 text-white rounded-full font-nunito hover:bg-green-700 transition-colors"
+              >
                 WhatsApp
-              </button>
-              <button className="px-6 py-3 bg-sky-500 text-white rounded-full font-nunito hover:bg-sky-600 transition-colors">
+              </a>
+              <a
+                href={twitterUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-sky-500 text-white rounded-full font-nunito hover:bg-sky-600 transition-colors"
+              >
                 Twitter
+              </a>
+              <button
+                onClick={copyLink}
+                className="px-6 py-3 bg-gray-900 text-white rounded-full font-nunito hover:bg-black transition-colors"
+              >
+                {copied ? 'Lien copié ✓' : 'Copier le lien'}
               </button>
             </div>
           </div>

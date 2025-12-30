@@ -21,19 +21,19 @@ export default function Footer() {
                         <Menu />
                     </div>
                 </div>
-            </div>
-            <div className="w-full bg-neutral-100">
-                <div className="container-fixed">
-                    <div className="flex flex-col lg:flex-row items-center justify-between lg:py-9 py-4 px-4 lg:px-20">
-                        <span className="text-xs lg:text-base text-center">
-                            © 2025 Medev Group Inc. Tous droits réservés.
-                        </span>
-                        <div className="hidden lg:flex">
-                            <Menu1 />
-                        </div>
+        </div>
+        <div className="w-full bg-black">
+            <div className="container-fixed">
+                <div className="flex flex-col lg:flex-row items-center justify-between lg:py-9 py-4 px-4 lg:px-20 bg-black text-white">
+                    <span className="text-xs lg:text-base text-center">
+                        © 2025 Medev Group Inc. Tous droits réservés.
+                    </span>
+                    <div className="hidden lg:flex">
+                        <Menu1 />
                     </div>
                 </div>
             </div>
+        </div>
             <div className="container-fixed">
                 <div className="lg:px-20">
                     <div>
