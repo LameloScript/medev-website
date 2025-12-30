@@ -64,7 +64,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
                         </button>
                     </div>
                 </div>
-                <div className="container-fixed flex items-center justify-center">
+                <div className="container-fixed flex items-center justify-center px-4 lg:px-8">
                     <Menu />
                 </div>
                 <div className="container-fixed">

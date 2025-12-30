@@ -69,24 +69,13 @@ body {
   }
 }
 
-/* Wrapper fixe à 1440px pour desktop */
+/* Wrapper avec max-width de 1440px pour desktop */
 @media (min-width: 1024px) {
   .container-fixed {
     max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
-    width: 1440px;
-  }
-
-  /* Force la largeur fixe même avec zoom */
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  body > * {
-    max-width: 100vw;
+    width: 100%;
   }
 }
 

@@ -10,6 +10,7 @@ interface Article {
   category: string
   date: string
   readTime: string
+  image?: string
   author: {
     name: string
     role: string
@@ -35,9 +36,11 @@ const articles: { [key: string]: Article } = {
     category: "Intelligence Artificielle",
     date: "15 décembre 2024",
     readTime: "5 min",
+    image: "https://picsum.photos/seed/ia-developpement-africain-hero/1600/900",
     author: {
       name: "Dr. Kouassi Adjoumani",
-      role: "Expert IA & Data Science"
+      role: "Expert IA & Data Science",
+      avatar: "https://i.pravatar.cc/150?u=Dr.%20Kouassi%20Adjoumani"
     },
     content: {
       introduction: "L'intelligence artificielle (IA) n'est plus une technologie du futur pour l'Afrique, mais une réalité qui transforme déjà de nombreux secteurs. De l'agriculture à la santé, en passant par l'éducation et les services financiers, l'IA offre des solutions innovantes adaptées aux défis spécifiques du continent.",
@@ -94,9 +97,11 @@ const articles: { [key: string]: Article } = {
     category: "Technologie",
     date: "10 décembre 2024",
     readTime: "4 min",
+    image: "https://picsum.photos/seed/applications-mobiles-agriculture-cote-ivoire-hero/1600/900",
     author: {
       name: "Aminata Traoré",
-      role: "Spécialiste AgriTech"
+      role: "Spécialiste AgriTech",
+      avatar: "https://i.pravatar.cc/150?u=Aminata%20Traore"
     },
     content: {
       introduction: "La Côte d'Ivoire, premier producteur mondial de cacao et important acteur agricole en Afrique de l'Ouest, connaît une révolution silencieuse grâce aux technologies mobiles. Les applications dédiées à l'agriculture transforment la façon dont les producteurs cultivent, vendent et gèrent leurs exploitations.",
@@ -189,10 +194,12 @@ export default function BlogArticleDetail({ slug }: { slug: string }) {
           {/* Meta Info */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 pb-8 border-b border-gray-200">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center">
-                <span className="text-secondary font-bangers text-xl">
-                  {article.author.name.charAt(0)}
-                </span>
+              <div className="w-12 h-12 rounded-full overflow-hidden">
+                <img
+                  src={article.author.avatar || '/assets/team/img-1.avif'}
+                  alt={article.author.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <div className="font-nunito font-semibold text-gray-900">{article.author.name}</div>
@@ -204,16 +211,13 @@ export default function BlogArticleDetail({ slug }: { slug: string }) {
             </div>
           </div>
 
-          {/* Featured Image Placeholder */}
-          <div className="my-12 w-full h-96 bg-gradient-to-br from-secondary/20 to-gray-200 rounded-2xl flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-20 h-20 bg-secondary/30 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                <svg className="w-10 h-10 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <span className="text-gray-500 text-sm">Image de l'article</span>
-            </div>
+          {/* Featured Image */}
+          <div className="my-12 w-full h-96 rounded-2xl overflow-hidden">
+            <img
+              src={article.image || '/assets/hero.png'}
+              alt={article.title}
+              className="w-full h-full object-cover"
+            />
           </div>
 
           {/* Article Content */}
@@ -315,8 +319,18 @@ export default function BlogArticleDetail({ slug }: { slug: string }) {
                   href="/fr/Blog"
                   className="group bg-gray-50 rounded-xl overflow-hidden hover:shadow-xl transition-all"
                 >
-                  <div className="w-full h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                    <span className="text-gray-400 text-sm">Article {item}</span>
+                  <div className="w-full h-48 relative">
+                    <img
+                      src={
+                        item === 1
+                          ? 'https://picsum.photos/seed/related-1/800/600'
+                          : item === 2
+                          ? 'https://picsum.photos/seed/related-2/800/600'
+                          : 'https://picsum.photos/seed/related-3/800/600'
+                      }
+                      alt={`Article ${item}`}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="p-6">
                     <span className="text-secondary text-xs font-nunito uppercase">Technologie</span>

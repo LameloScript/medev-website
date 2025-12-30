@@ -11,6 +11,7 @@ import Industry from "@/src/components/views/home/industry";
 import ChooseUs from "@/src/components/views/home/choose-us";
 import Distinctions from "@/src/components/views/home/distinctions";
 import TeamTest from "@/src/components/views/home/team-test";
+import BlogPreview from "@/src/components/views/home/blog-preview";
 
 
 
@@ -36,6 +37,7 @@ export default function Home() {
       <ChooseUs />
       <TeamTest/>
       <Project />
+      <BlogPreview />
       <Faq /> 
       
      

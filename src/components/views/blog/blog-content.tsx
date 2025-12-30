@@ -3,91 +3,9 @@
 import { useState } from 'react'
 import Header from '../header/header'
 import Breadcrumb from '@/components/ui/breadcrumb'
+import { blogArticles, blogCategories } from '@/src/data/blog'
 
-// Types
-interface BlogArticle {
-  id: number
-  title: string
-  excerpt: string
-  category: string
-  date: string
-  readTime: string
-  image?: string
-  featured?: boolean
-  slug?: string
-}
-
-const blogArticles: BlogArticle[] = [
-  {
-    id: 1,
-    title: "L'IA au service du développement africain",
-    excerpt: "Découvrez comment l'intelligence artificielle révolutionne les secteurs clés du continent africain, de l'agriculture intelligente aux villes connectées.",
-    category: "Intelligence Artificielle",
-    date: "15 décembre 2024",
-    readTime: "5 min",
-    featured: true,
-    slug: "ia-developpement-africain"
-  },
-  {
-    id: 2,
-    title: "Les applications mobiles transforment l'agriculture en Côte d'Ivoire",
-    excerpt: "Comment les technologies mobiles permettent aux agriculteurs d'optimiser leurs rendements et d'accéder aux marchés.",
-    category: "Technologie",
-    date: "10 décembre 2024",
-    readTime: "4 min",
-    slug: "applications-mobiles-agriculture-cote-ivoire"
-  },
-  {
-    id: 3,
-    title: "IoT et villes intelligentes : l'avenir urbain africain",
-    excerpt: "L'Internet des Objets révolutionne la gestion urbaine en Afrique avec des solutions innovantes pour l'énergie, l'eau et les transports.",
-    category: "IoT",
-    date: "5 décembre 2024",
-    readTime: "6 min"
-  },
-  {
-    id: 4,
-    title: "Géomatique et gestion des ressources naturelles",
-    excerpt: "Les technologies géospatiales au service de la protection de l'environnement et de la gestion durable des ressources.",
-    category: "Géomatique",
-    date: "1 décembre 2024",
-    readTime: "5 min"
-  },
-  {
-    id: 5,
-    title: "Cloud Computing : Accélérer la transformation digitale des PME",
-    excerpt: "Comment le cloud permet aux PME africaines de gagner en agilité et en compétitivité sans investissements lourds.",
-    category: "Cloud",
-    date: "28 novembre 2024",
-    readTime: "4 min"
-  },
-  {
-    id: 6,
-    title: "Cybersécurité : Protéger les entreprises à l'ère digitale",
-    excerpt: "Les meilleures pratiques pour sécuriser vos infrastructures et données dans un monde hyperconnecté.",
-    category: "Sécurité",
-    date: "25 novembre 2024",
-    readTime: "7 min"
-  },
-  {
-    id: 7,
-    title: "Design UX/UI : Créer des expériences qui convertissent",
-    excerpt: "L'importance d'un design centré utilisateur pour maximiser l'engagement et la conversion.",
-    category: "Design",
-    date: "20 novembre 2024",
-    readTime: "5 min"
-  },
-  {
-    id: 8,
-    title: "E-commerce en Afrique : Tendances et opportunités 2025",
-    excerpt: "Analyse des tendances du commerce électronique et des opportunités pour les entrepreneurs africains.",
-    category: "E-commerce",
-    date: "15 novembre 2024",
-    readTime: "6 min"
-  }
-]
-
-const categories = ["Tous", "Intelligence Artificielle", "Technologie", "IoT", "Géomatique", "Cloud", "Sécurité", "Design", "E-commerce"]
+// données importées depuis src/data/blog.ts
 
 export default function BlogContent() {
   const [selectedCategory, setSelectedCategory] = useState("Tous")
@@ -127,7 +45,7 @@ export default function BlogContent() {
       <section className="py-8 border-b border-gray-200">
         <div className="container-fixed px-4 lg:px-8">
           <div className="flex flex-wrap gap-3 justify-center">
-            {categories.map((category) => (
+            {blogCategories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
@@ -153,15 +71,12 @@ export default function BlogContent() {
               <a href={`/fr/Blog/${featuredArticle.slug || 'ia-developpement-africain'}`} className="block">
                 <div className="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all cursor-pointer group border border-gray-200">
                   <div className="grid lg:grid-cols-2 gap-0">
-                  <div className="w-full h-64 lg:h-full bg-gradient-to-br from-secondary/10 to-gray-100 flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <div className="w-20 h-20 bg-secondary/30 rounded-2xl mx-auto mb-4 flex items-center justify-center">
-                        <svg className="w-10 h-10 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
-                      </div>
-                      <span className="text-gray-500 text-sm">Image à la une</span>
-                    </div>
+                  <div className="w-full h-64 lg:h-full relative">
+                    <img
+                      src={featuredArticle.image || '/assets/hero.png'}
+                      alt={featuredArticle.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <div className="p-8 lg:p-12 flex flex-col justify-center">
                     <span className="text-secondary text-sm font-nunito uppercase tracking-wider">
@@ -193,18 +108,14 @@ export default function BlogContent() {
                 href={`/fr/Blog/${article.slug || 'ia-developpement-africain'}`}
                 className="block"
               >
-                <article className="bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all hover:scale-105 cursor-pointer group border border-gray-200"
-                >
-                <div className="w-full h-48 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center border-b border-gray-200">
-                  <div className="text-center p-6">
-                    <div className="w-16 h-16 bg-secondary/20 rounded-xl mx-auto mb-3 flex items-center justify-center">
-                      <svg className="w-8 h-8 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                      </svg>
-                    </div>
-                    <span className="text-gray-500 text-xs">Article</span>
+                <article className="bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all hover:scale-105 cursor-pointer group border border-gray-200">
+                  <div className="w-full h-48 relative border-b border-gray-200">
+                    <img
+                      src={article.image || '/assets/img-1.png'}
+                      alt={article.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </div>
                 <div className="p-6">
                   <span className="text-secondary text-xs font-nunito uppercase tracking-wider">
                     {article.category}

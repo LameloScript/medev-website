@@ -28,7 +28,7 @@ const projects: Project[] = [
     category: "E-commerce",
     year: 2024,
     technologies: ["Next.js", "Node.js", "MongoDB"],
-    image: "/assets/project-1.jpg",
+    image: "/assets/hero-imgg.png",
     color: "from-purple-500/20 to-pink-500/20",
     size: "large"
   },
@@ -40,7 +40,7 @@ const projects: Project[] = [
     category: "Santé",
     year: 2024,
     technologies: ["React Native", "Firebase", "WebRTC"],
-    image: "/assets/project-2.jpg",
+    image: "/assets/team/img-2.avif",
     color: "from-blue-500/20 to-cyan-500/20",
     size: "small"
   },
@@ -52,7 +52,7 @@ const projects: Project[] = [
     category: "Agriculture",
     year: 2023,
     technologies: ["Python", "TensorFlow", "IoT"],
-    image: "/assets/project-3.jpg",
+    image: "/assets/team/img-4.avif",
     color: "from-green-500/20 to-emerald-500/20",
     size: "small"
   },
@@ -64,7 +64,7 @@ const projects: Project[] = [
     category: "Finance",
     year: 2024,
     technologies: ["Flutter", "Microservices", "Docker"],
-    image: "/assets/project-4.jpg",
+    image: "/assets/hero.png",
     color: "from-orange-500/20 to-yellow-500/20",
     size: "large"
   },
@@ -76,7 +76,7 @@ const projects: Project[] = [
     category: "Smart City",
     year: 2024,
     technologies: ["React", "D3.js", "IoT"],
-    image: "/assets/project-5.jpg",
+    image: "/assets/RdrFbmqBWKqjHmFGvIoQ8Dbo9E.avif",
     color: "from-indigo-500/20 to-purple-500/20",
     size: "small"
   },
@@ -88,7 +88,7 @@ const projects: Project[] = [
     category: "Environnement",
     year: 2023,
     technologies: ["Python", "GIS", "Machine Learning"],
-    image: "/assets/project-6.jpg",
+    image: "/assets/fire-hero.png",
     color: "from-teal-500/20 to-green-500/20",
     size: "large"
   },
@@ -100,7 +100,7 @@ const projects: Project[] = [
     category: "Éducation",
     year: 2024,
     technologies: ["Next.js", "GraphQL", "PWA"],
-    image: "/assets/project-7.jpg",
+    image: "/assets/team/img-1.avif",
     color: "from-red-500/20 to-orange-500/20",
     size: "small"
   },
@@ -112,7 +112,7 @@ const projects: Project[] = [
     category: "Logistique",
     year: 2024,
     technologies: ["React Native", "Node.js", "Google Maps"],
-    image: "/assets/project-8.jpg",
+    image: "/assets/ihero.png",
     color: "from-pink-500/20 to-rose-500/20",
     size: "small"
   },
@@ -124,7 +124,7 @@ const projects: Project[] = [
     category: "Hôtellerie",
     year: 2023,
     technologies: ["Vue.js", "Laravel", "MySQL"],
-    image: "/assets/project-9.jpg",
+    image: "/assets/background-medev.png",
     color: "from-violet-500/20 to-purple-500/20",
     size: "large"
   }
@@ -145,9 +145,9 @@ export default function ProjectsContent() {
       <Header darkMode={false} />
 
       {/* Hero Section */}
-      <div className="pt-24 pb-12 lg:pt-32 lg:pb-16">
-        <div className="container-fixed px-4 lg:px-8">
-          <div className="mb-8">
+      <div className="pt-28 pb-12 md:pt-32 lg:pt-36 lg:pb-16 relative z-10 bg-white">
+        <div className="container-fixed px-4 md:px-6 lg:px-8">
+          <div className="mb-6 md:mb-8 relative z-20">
             <Breadcrumb
               items={[
                 { label: 'Accueil', href: '/fr' },
@@ -155,11 +155,11 @@ export default function ProjectsContent() {
               ]}
             />
           </div>
-          <div className="max-w-4xl">
-            <h1 className="font-bangers text-5xl lg:text-7xl text-gray-900 mb-6">
+          <div className="max-w-4xl relative z-20">
+            <h1 className="font-bangers text-4xl md:text-5xl lg:text-7xl text-gray-900 mb-4 md:mb-6 leading-tight">
               Nos Réalisations
             </h1>
-            <p className="text-gray-600 text-lg lg:text-xl font-nunito leading-relaxed">
+            <p className="text-gray-600 text-base md:text-lg lg:text-xl font-nunito leading-relaxed max-w-3xl">
               Découvrez comment nous transformons les visions en solutions digitales performantes.
               Chaque projet est une histoire de collaboration, d'innovation et d'impact.
             </p>
@@ -168,14 +168,14 @@ export default function ProjectsContent() {
       </div>
 
       {/* Category Filter - Horizontal Scroll */}
-      <section className="sticky top-20 lg:top-24 z-40 bg-white/80 backdrop-blur-lg border-y border-gray-200 py-6">
+      <section className="sticky top-20 md:top-20 lg:top-24 z-40 bg-white/80 backdrop-blur-lg border-y border-gray-200 py-4 md:py-6">
         <div className="container-fixed px-4 lg:px-8">
-          <div className="flex gap-3 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-2 md:gap-3 overflow-x-auto scrollbar-hide">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2.5 rounded-full text-sm font-nunito whitespace-nowrap transition-all ${
+                className={`px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-nunito whitespace-nowrap transition-all ${
                   selectedCategory === category
                     ? 'bg-gray-900 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -198,37 +198,26 @@ export default function ProjectsContent() {
             </span>
           </div>
 
-          {/* Masonry Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+          {/* Grid 3 columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {filteredProjects.map((project, index) => (
               <div
                 key={project.id}
-                className={`group cursor-pointer ${
-                  project.size === 'large'
-                    ? 'lg:col-span-8'
-                    : 'lg:col-span-4'
-                }`}
+                className="group cursor-pointer"
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
                 <div className="relative overflow-hidden rounded-2xl bg-gray-50 border border-gray-200">
                   {/* Image Container */}
-                  <div className={`relative overflow-hidden ${
-                    project.size === 'large' ? 'h-[500px]' : 'h-[400px]'
-                  }`}>
+                  <div className="relative overflow-hidden h-[400px]">
                     {/* Gradient Overlay */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.color} z-10`}></div>
 
-                    {/* Placeholder for project image */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-24 h-24 bg-white/50 rounded-3xl mx-auto mb-4 flex items-center justify-center backdrop-blur-sm">
-                          <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
 
                     {/* Hover Overlay */}
                     <div
@@ -306,24 +295,24 @@ export default function ProjectsContent() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 lg:py-32 bg-gray-50">
+      <section className="py-16 md:py-20 lg:py-32 bg-gray-50">
         <div className="container-fixed px-4 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12">
             <div className="text-center lg:text-left">
-              <div className="font-bangers text-5xl lg:text-6xl text-gray-900 mb-2">50+</div>
-              <div className="text-gray-600 font-nunito text-sm lg:text-base">Projets réalisés</div>
+              <div className="font-bangers text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-2">50+</div>
+              <div className="text-gray-600 font-nunito text-xs md:text-sm lg:text-base">Projets réalisés</div>
             </div>
             <div className="text-center lg:text-left">
-              <div className="font-bangers text-5xl lg:text-6xl text-gray-900 mb-2">30+</div>
-              <div className="text-gray-600 font-nunito text-sm lg:text-base">Clients satisfaits</div>
+              <div className="font-bangers text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-2">30+</div>
+              <div className="text-gray-600 font-nunito text-xs md:text-sm lg:text-base">Clients satisfaits</div>
             </div>
             <div className="text-center lg:text-left">
-              <div className="font-bangers text-5xl lg:text-6xl text-gray-900 mb-2">10</div>
-              <div className="text-gray-600 font-nunito text-sm lg:text-base">Secteurs d'activité</div>
+              <div className="font-bangers text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-2">10</div>
+              <div className="text-gray-600 font-nunito text-xs md:text-sm lg:text-base">Secteurs d'activité</div>
             </div>
             <div className="text-center lg:text-left">
-              <div className="font-bangers text-5xl lg:text-6xl text-gray-900 mb-2">98%</div>
-              <div className="text-gray-600 font-nunito text-sm lg:text-base">Taux de satisfaction</div>
+              <div className="font-bangers text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-2">98%</div>
+              <div className="text-gray-600 font-nunito text-xs md:text-sm lg:text-base">Taux de satisfaction</div>
             </div>
           </div>
         </div>
@@ -332,7 +321,7 @@ export default function ProjectsContent() {
       {/* CTA Section */}
       <section className="py-20 lg:py-32">
         <div className="container-fixed px-4 lg:px-8">
-          <div className="bg-gray-900 rounded-3xl p-12 lg:p-20 text-center relative overflow-hidden">
+          <div className="bg-gray-900 rounded-3xl p-8 md:p-12 lg:p-20 text-center relative overflow-hidden">
             {/* Background Pattern */}
             <div
               className="absolute inset-0 opacity-10"
@@ -344,15 +333,15 @@ export default function ProjectsContent() {
             ></div>
 
             <div className="relative z-10 max-w-3xl mx-auto">
-              <h2 className="font-bangers text-4xl lg:text-6xl text-white mb-6">
+              <h2 className="font-bangers text-3xl md:text-4xl lg:text-6xl text-white mb-4 md:mb-6">
                 Prêt à lancer votre projet ?
               </h2>
-              <p className="text-gray-300 font-nunito text-lg lg:text-xl mb-10 leading-relaxed">
+              <p className="text-gray-300 font-nunito text-base md:text-lg lg:text-xl mb-8 md:mb-10 leading-relaxed">
                 Discutons de votre vision et transformons-la en réalité digitale.
                 Notre équipe d'experts est prête à vous accompagner de l'idée à la mise en production.
               </p>
               <a href="/fr/Contact">
-                <button className="bg-secondary inline-flex items-center gap-3 px-8 py-4 rounded-full text-white text-lg font-bangers hover:bg-orange-600 transition-all hover:scale-105">
+                <button className="bg-secondary inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-full text-white text-base md:text-lg font-bangers hover:bg-orange-600 transition-all hover:scale-105">
                   <div className="rounded-full bg-white p-2">
                     <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
                   </div>

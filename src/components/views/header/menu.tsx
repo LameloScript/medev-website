@@ -17,7 +17,7 @@ export default function Menu() {
         },
 
         {
-            label: "PROJECTS", href: "/fr/projects"
+            label: "PROJETS", href: "/fr/projects"
         },
 
         {
@@ -40,7 +40,7 @@ export default function Menu() {
                     <a
                         key={item.label}
                         href={item.href}
-                        className="flex flex-col items-center font-bangers font-bold text-4xl lg:text-5xl transition-all duration-300 hover:scale-110 hover:text-secondary"
+                        className="flex flex-col items-center font-bangers font-bold text-3xl sm:text-4xl lg:text-5xl transition-all duration-300 hover:scale-110 hover:text-secondary"
 
                     >
                         {item.label}

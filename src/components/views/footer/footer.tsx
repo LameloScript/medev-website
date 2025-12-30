@@ -20,14 +20,22 @@ export default function Footer() {
                     <div className="text-white  px-4 lg:px-8 flex flex-col  gap-4 lg:gap-6">
                         <Menu />
                     </div>
-                    <div className="flex flex-col lg:flex-row items-center justify-between lg:pt-9 py-4 px-4  bg-black">
-                        <span className="text-xs lg:text-base text-center text-white">
+                </div>
+            </div>
+            <div className="w-full bg-neutral-100">
+                <div className="container-fixed">
+                    <div className="flex flex-col lg:flex-row items-center justify-between lg:py-9 py-4 px-4 lg:px-20">
+                        <span className="text-xs lg:text-base text-center">
                             © 2025 Medev Group Inc. Tous droits réservés.
                         </span>
-                        <div className="text-white hidden lg:flex">
+                        <div className="hidden lg:flex">
                             <Menu1 />
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="container-fixed">
+                <div className="lg:px-20">
                     <div>
                         <img src="/assets/medev-footer.png" alt="" />
                     </div>

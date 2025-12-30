@@ -19,7 +19,7 @@ export const projects: Project[] = [
         subtitle: "Plateforme de mise en relation B2B",
         category: "COMMERCE INTERNATIONAL",
         description: "Une plateforme innovante qui connecte les entreprises africaines pour faciliter les échanges commerciaux B2B. Solution complète incluant la gestion de profils d'entreprises, un système de mise en relation intelligent, et des outils de communication intégrés.",
-        image: "/assets/projets/afikabba.png",
+        image: "/assets/projet-1.png",
         link: "https://afrikababba.com",
         technologies: [
             { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
@@ -33,7 +33,7 @@ export const projects: Project[] = [
         subtitle: "Cabinet de conseil stratégique",
         category: "CONSEIL & STRATÉGIE",
         description: "Refonte complète de la présence digitale d'un cabinet de conseil stratégique de premier plan. Création d'un site web moderne avec système de gestion de contenu, espace client sécurisé, et intégration d'outils d'analyse pour le suivi des performances.",
-        image: "/assets/projets/galabi.png",
+        image: "/assets/projet.png",
         link: "https://groupegalabi.com",
         technologies: [
             { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },

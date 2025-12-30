@@ -3,7 +3,7 @@ import HeroImage from "../hero-image";
 export default function title() {
   return (
 
-    <div className="flex flex-col gap-76 mt-20 lg:hidden md:hidden">
+    <div className="flex flex-col gap-76 mt-20 lg:hidden">
       <div className="">
         <div className="flex flex-col gap-6 lg:items-start items-center lg:justify-start justify-center px-0 lg:px-0">
           <h1 className="lg:text-start text-center lg:text-8xl text-4xl md:text-6xl font-bangers lg:leading-24 leading-tight opacity-0 animate-fade-in-up [animation-delay:0.2s]">

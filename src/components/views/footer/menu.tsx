@@ -4,7 +4,7 @@ export default function Menu() {
 
     const footerItems = [
         {
-            label: "Projects", href: "/fr/projects"
+            label: "Projets", href: "/fr/projects"
         },
 
         {

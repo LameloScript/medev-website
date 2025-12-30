@@ -25,22 +25,22 @@ export default function Hero() {
       {/* Header */}
      
                   <div className={`fixed top-0 left-0 right-0 z-40 ${darkMode ? 'bg-black text-white' : 'bg-white'}`}>
-                      <div className="container-fixed px-4">
-                          <div className="flex items-center justify-between lg:py-4 py-4 lg:px-8">
-                              <div className="flex items-center gap-1">
-                                  <a href="/fr/" className="flex items-center gap-1">
-                                      <img src={darkMode ? "/assets/logo-medev-blanc.svg" : "/assets/logo-medev-drk.svg"} alt="" className="w-6" />
-                                      <span className="text-sm lg:text-base font-nunito">Medev Group</span>
+                      <div className="container-fixed">
+                          <div className="flex items-center justify-between gap-2 lg:py-4 py-4 px-4 lg:px-8">
+                              <div className="flex items-center gap-1 shrink-0">
+                                  <a href="/fr/" className="flex items-center gap-0.5 sm:gap-1">
+                                      <img src={darkMode ? "/assets/logo-medev-blanc.svg" : "/assets/logo-medev-drk.svg"} alt="" className="w-4 sm:w-5 lg:w-6" />
+                                      <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-nunito whitespace-nowrap">Medev Group</span>
                                   </a>
                               </div>
-                              <div className="text-xs lg:text-sm font-nunito hidden lg:flex">
+                              <div className="text-[10px] sm:text-xs lg:text-sm font-nunito hidden md:flex shrink-0">
                                   ©2025
                               </div>
                               <button
                                   onClick={() => setIsMenuOpen(true)}
-                                  className="cursor-pointer"
+                                  className="cursor-pointer shrink-0"
                               >
-                                  <span className="text-sm lg:text-base font-nunito">[ Menu ]</span>
+                                  <span className="text-[10px] sm:text-xs md:text-sm lg:text-base font-nunito whitespace-nowrap">[ Menu ]</span>
                               </button>
                           </div>
                       </div>
@@ -74,7 +74,7 @@ export default function Hero() {
                               </button>
                           </div>
                       </div>
-                      <div className="container-fixed flex items-center justify-center">
+                      <div className="container-fixed flex items-center justify-center px-4 lg:px-8">
                           <Menu />
                       </div>
                       <div className="container-fixed">
@@ -90,8 +90,8 @@ export default function Hero() {
                   </div>
 
       {/* Content */}
-      <div className="lg:flex  lg:flex-col  items-center  justify-between px-4 lg:px-8">
-        <div className="relative z-10 lg:flex-1  hidden lg:flex lg:flex-col lg:items-center lg:justify-center lg:mb-20 lg:container-fixed lg:mx-auto">
+      <div className="lg:flex lg:flex-col items-center justify-center px-4 lg:px-8 lg:flex-1">
+        <div className="relative z-10 hidden lg:flex lg:flex-col lg:items-center lg:justify-center lg:container-fixed lg:mx-auto">
           <div className="flex flex-col lg:items-start items-center my-10 lg:py-16 px-2 sm:px-4 lg:px-20">
             <h1 className="lg:text-start text-center lg:text-8xl text-5xl md:text-6xl font-bangers lg:leading-24 leading-tight opacity-0 animate-fade-in-up [animation-delay:0.2s]">
               Pas juste de la tech,
