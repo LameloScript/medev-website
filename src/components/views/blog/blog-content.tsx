@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useParams } from 'next/navigation'
 import Header from '../header/header'
 import Breadcrumb from '@/components/ui/breadcrumb'
 import { blogArticles, blogCategories } from '@/src/data/blog'
@@ -9,6 +10,7 @@ import { blogArticles, blogCategories } from '@/src/data/blog'
 
 export default function BlogContent() {
   const [selectedCategory, setSelectedCategory] = useState("Tous")
+  const { lang } = useParams() as { lang: string }
 
   const filteredArticles = selectedCategory === "Tous"
     ? blogArticles
@@ -27,8 +29,8 @@ export default function BlogContent() {
           <div className="mb-6 lg:mb-8">
             <Breadcrumb
               items={[
-                { label: 'Accueil', href: '/fr' },
-                { label: 'Blog' }
+                { label: 'Accueil', href: `/${lang}` },
+                { label: 'Blog', href: `/${lang}/Blog` }
               ]}
             />
           </div>
@@ -68,7 +70,7 @@ export default function BlogContent() {
           {/* Featured Article - Only show when "Tous" is selected */}
           {selectedCategory === "Tous" && featuredArticle && (
             <div className="mb-12 lg:mb-16">
-              <a href={`/fr/Blog/${featuredArticle.slug || 'ia-developpement-africain'}`} className="block">
+              <a href={`/${lang}/Blog/${featuredArticle.slug || 'ia-developpement-africain'}`} className="block">
                 <div className="bg-gray-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all cursor-pointer group border border-gray-200">
                   <div className="grid lg:grid-cols-2 gap-0">
                   <div className="w-full h-64 lg:h-full relative">
@@ -105,7 +107,7 @@ export default function BlogContent() {
             {filteredArticles.filter(article => !article.featured || selectedCategory !== "Tous").map((article) => (
               <a
                 key={article.id}
-                href={`/fr/Blog/${article.slug || 'ia-developpement-africain'}`}
+                href={`/${lang}/Blog/${article.slug || 'ia-developpement-africain'}`}
                 className="block"
               >
                 <article className="bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all hover:scale-105 cursor-pointer group border border-gray-200">

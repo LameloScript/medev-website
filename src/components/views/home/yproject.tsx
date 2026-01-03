@@ -1,13 +1,33 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { projects } from '../../../data/projects';
 
-export default function yproject() {
+interface Project {
+    id: number;
+    slug: string;
+    title: string;
+    subtitle: string;
+    category: string;
+    description: string;
+    image: string;
+    link: string;
+    technologies: {
+        name: string;
+        icon: string;
+    }[];
+}
+
+interface YprojectProps {
+    projects: Project[];
+}
+
+export default function yproject({ projects }: YprojectProps) {
+    // Limiter à seulement les 3 premiers projets
+    const displayedProjects = projects.slice(0, 3);
     const [currentSlide, setCurrentSlide] = useState(0);
 
     const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % projects.length);
+        setCurrentSlide((prev) => (prev + 1) % displayedProjects.length);
     };
 
     const goToSlide = (index: number) => {
@@ -16,12 +36,19 @@ export default function yproject() {
 
     // Auto-play carousel
     useEffect(() => {
+        if (displayedProjects.length === 0) return;
+
         const timer = setInterval(() => {
             nextSlide();
         }, 5000); // Change slide every 5 seconds
 
         return () => clearInterval(timer);
-    }, [currentSlide]);
+    }, [currentSlide, displayedProjects.length]);
+
+    // Si pas de projets, ne rien afficher
+    if (!projects || projects.length === 0) {
+        return null;
+    }
 
     return (
         <div className="min-h-screen flex flex-col lg:gap-24 lg:py-22 py-14 px-4 lg:px-20">
@@ -55,33 +82,33 @@ export default function yproject() {
                                 {/* Category Badge */}
                                 <div className="flex items-center gap-2 animate-fade-in">
                                     <span className="text-secondary text-xs lg:text-sm font-bold uppercase tracking-wider border border-secondary px-3 py-1 rounded-full">
-                                        {projects[currentSlide].category}
+                                        {displayedProjects[currentSlide].category}
                                     </span>
                                 </div>
 
                                 {/* Title */}
                                 <div className="animate-fade-in [animation-delay:0.1s]">
                                     <h3 className="text-black font-bangers text-3xl lg:text-4xl mb-3">
-                                        {projects[currentSlide].title}
+                                        {displayedProjects[currentSlide].title}
                                     </h3>
                                     <p className="text-secondary font-bangers text-base lg:text-xl">
-                                        {projects[currentSlide].subtitle}
+                                        {displayedProjects[currentSlide].subtitle}
                                     </p>
                                 </div>
 
                                 {/* Description */}
                                 <p className="text-gray-700 text-base hidden lg:flex  leading-relaxed animate-fade-in [animation-delay:0.2s]">
-                                    {projects[currentSlide].description}
+                                    {displayedProjects[currentSlide].description}
                                 </p>
 
                                 {/* Technologies */}
                                 <div className="flex flex-col gap-4 mt-4 animate-fade-in [animation-delay:0.3s]">
                                      <span>Technologies</span>
                                     <div className="flex items-center   gap-4">
-                                       
-                                        {projects[currentSlide].technologies.map((tech: { name: string; icon: string }, idx: number) => (
+
+                                        {displayedProjects[currentSlide].technologies.map((tech: { name: string; icon: string }, idx: number) => (
                                             <div key={idx} className="group relative flex">
-                                                
+
                                                 <img
                                                     src={tech.icon}
                                                     alt={tech.name}
@@ -94,7 +121,7 @@ export default function yproject() {
 
                                 {/* CTA Link */}
                                 <a
-                                    href={projects[currentSlide].link}
+                                    href={displayedProjects[currentSlide].link}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 text-secondary font-bold text-base hover:gap-4 transition-all duration-300 mt-4 animate-fade-in [animation-delay:0.4s]"
@@ -110,8 +137,8 @@ export default function yproject() {
                             <div className="lg:w-4/6 relative h-56 lg:h-auto min-h-[300px] overflow-hidden order-1 lg:order-2 bg-linear-to-br from-gray-100 to-gray-200 ">
                                 <img
                                     key={currentSlide}
-                                    src={projects[currentSlide].image}
-                                    alt={projects[currentSlide].title}
+                                    src={displayedProjects[currentSlide].image}
+                                    alt={displayedProjects[currentSlide].title}
                                     className="w-full h-full object-cover rounded-tl-lg animate-fade-in"
                                 />
                             </div>
@@ -120,7 +147,7 @@ export default function yproject() {
 
                     {/* Dots Navigation */}
                     <div className="flex justify-center gap-3 mt-8">
-                        {projects.map((_, index) => (
+                        {displayedProjects.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => goToSlide(index)}

@@ -1,140 +1,26 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
+import { useParams } from 'next/navigation'
 import Header from '../header/header'
 import Breadcrumb from '@/components/ui/breadcrumb'
-import Image from 'next/image'
+import { Project } from '@/src/data/projects'
+import Link from 'next/link'
 
-// Types
-interface Project {
-  id: number
-  title: string
-  client: string
-  description: string
-  category: string
-  year: number
-  technologies: string[]
-  image: string
-  color: string // Gradient color for the project
-  size: 'small' | 'large' // For masonry layout
+interface ProjectsContentProps {
+  projects: Project[]
 }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Plateforme E-commerce Multi-vendeurs",
-    client: "Retail Group CI",
-    description: "Plateforme e-commerce complète permettant à plusieurs vendeurs de proposer leurs produits avec paiement mobile et gestion intelligente.",
-    category: "E-commerce",
-    year: 2024,
-    technologies: ["Next.js", "Node.js", "MongoDB"],
-    image: "/assets/hero-imgg.png",
-    color: "from-purple-500/20 to-pink-500/20",
-    size: "large"
-  },
-  {
-    id: 2,
-    title: "Application Mobile de Télémédecine",
-    client: "HealthCare Innovation",
-    description: "Application connectant patients et médecins pour des consultations à distance avec dossiers médicaux numériques.",
-    category: "Santé",
-    year: 2024,
-    technologies: ["React Native", "Firebase", "WebRTC"],
-    image: "/assets/team/img-2.avif",
-    color: "from-blue-500/20 to-cyan-500/20",
-    size: "small"
-  },
-  {
-    id: 3,
-    title: "Système de Gestion Agricole Intelligent",
-    client: "AgroBusiness Partners",
-    description: "Plateforme IoT et IA pour la gestion optimisée des exploitations agricoles avec surveillance par satellite.",
-    category: "Agriculture",
-    year: 2023,
-    technologies: ["Python", "TensorFlow", "IoT"],
-    image: "/assets/team/img-4.avif",
-    color: "from-green-500/20 to-emerald-500/20",
-    size: "small"
-  },
-  {
-    id: 4,
-    title: "Plateforme Bancaire Mobile",
-    client: "FinTech Solutions",
-    description: "Application bancaire mobile complète avec transferts instantanés, micro-crédit et sécurité renforcée.",
-    category: "Finance",
-    year: 2024,
-    technologies: ["Flutter", "Microservices", "Docker"],
-    image: "/assets/hero.png",
-    color: "from-orange-500/20 to-yellow-500/20",
-    size: "large"
-  },
-  {
-    id: 5,
-    title: "Smart City Dashboard",
-    client: "Ville d'Abidjan",
-    description: "Tableau de bord intelligent pour la gestion urbaine avec monitoring du trafic et éclairage public.",
-    category: "Smart City",
-    year: 2024,
-    technologies: ["React", "D3.js", "IoT"],
-    image: "/assets/RdrFbmqBWKqjHmFGvIoQ8Dbo9E.avif",
-    color: "from-indigo-500/20 to-purple-500/20",
-    size: "small"
-  },
-  {
-    id: 6,
-    title: "Plateforme de Surveillance Environnementale",
-    client: "Ministère de l'Environnement",
-    description: "Système géospatial utilisant l'imagerie satellite et l'IA pour détecter la déforestation.",
-    category: "Environnement",
-    year: 2023,
-    technologies: ["Python", "GIS", "Machine Learning"],
-    image: "/assets/fire-hero.png",
-    color: "from-teal-500/20 to-green-500/20",
-    size: "large"
-  },
-  {
-    id: 7,
-    title: "Plateforme d'Apprentissage en Ligne",
-    client: "EduTech Africa",
-    description: "LMS adapté au contexte africain avec fonctionnalités hors-ligne et contenu localisé.",
-    category: "Éducation",
-    year: 2024,
-    technologies: ["Next.js", "GraphQL", "PWA"],
-    image: "/assets/team/img-1.avif",
-    color: "from-red-500/20 to-orange-500/20",
-    size: "small"
-  },
-  {
-    id: 8,
-    title: "Application de Livraison Express",
-    client: "QuickDelivery CI",
-    description: "Solution de livraison avec tracking en temps réel et optimisation des routes par IA.",
-    category: "Logistique",
-    year: 2024,
-    technologies: ["React Native", "Node.js", "Google Maps"],
-    image: "/assets/ihero.png",
-    color: "from-pink-500/20 to-rose-500/20",
-    size: "small"
-  },
-  {
-    id: 9,
-    title: "Système de Gestion Hôtelière",
-    client: "Luxury Hotels Group",
-    description: "Suite complète de gestion hôtelière avec réservations, check-in/out digital et analytics.",
-    category: "Hôtellerie",
-    year: 2023,
-    technologies: ["Vue.js", "Laravel", "MySQL"],
-    image: "/assets/background-medev.png",
-    color: "from-violet-500/20 to-purple-500/20",
-    size: "large"
-  }
-]
-
-const categories = ["Tous", "E-commerce", "Santé", "Agriculture", "Finance", "Smart City", "Environnement", "Éducation", "Logistique", "Hôtellerie"]
-
-export default function ProjectsContent() {
+export default function ProjectsContent({ projects }: ProjectsContentProps) {
+  const { lang } = useParams() as { lang: string }
   const [selectedCategory, setSelectedCategory] = useState("Tous")
   const [hoveredProject, setHoveredProject] = useState<number | null>(null)
+
+  // Génère dynamiquement les catégories à partir des projets
+  const categories = useMemo(() => {
+    const uniqueCategories = Array.from(new Set(projects.map(p => p.category)))
+    return ["Tous", ...uniqueCategories.sort()]
+  }, [projects])
 
   const filteredProjects = selectedCategory === "Tous"
     ? projects
@@ -150,14 +36,14 @@ export default function ProjectsContent() {
           <div className="mb-6 md:mb-8 relative z-20">
             <Breadcrumb
               items={[
-                { label: 'Accueil', href: '/fr' },
-                { label: 'Projets' }
+                { label: 'Accueil', href: `/${lang}` },
+                { label: 'Vos projets sur mesure' }
               ]}
             />
           </div>
           <div className="max-w-4xl relative z-20">
             <h1 className="font-bangers text-4xl md:text-5xl lg:text-7xl text-gray-900 mb-4 md:mb-6 leading-tight">
-              Nos Réalisations
+            Vos Projets sur mesure
             </h1>
             <p className="text-gray-600 text-base md:text-lg lg:text-xl font-nunito leading-relaxed max-w-3xl">
               Découvrez comment nous transformons les visions en solutions digitales performantes.
@@ -199,19 +85,20 @@ export default function ProjectsContent() {
           </div>
 
           {/* Grid 3 columns */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {filteredProjects.map((project, index) => (
-              <div
+              <Link
                 key={project.id}
+                href={`/${lang}/projects/${project.slug}`}
                 className="group cursor-pointer"
                 onMouseEnter={() => setHoveredProject(project.id)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
                 <div className="relative overflow-hidden rounded-2xl bg-gray-50 border border-gray-200">
                   {/* Image Container */}
-                  <div className="relative overflow-hidden h-[400px]">
+                  <div className="relative overflow-hidden h-[450px] lg:h-[500px]">
                     {/* Gradient Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${project.color} z-10`}></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/40 z-10"></div>
 
                     <img
                       src={project.image}
@@ -232,7 +119,7 @@ export default function ProjectsContent() {
                       >
                         <div className="mb-4">
                           <span className="text-secondary text-xs font-nunito uppercase tracking-wider">
-                            {project.client} • {project.year}
+                            {project.category}
                           </span>
                         </div>
                         <h3 className="font-bangers text-3xl lg:text-4xl text-white mb-4">
@@ -247,12 +134,12 @@ export default function ProjectsContent() {
                               key={i}
                               className="px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white rounded-full text-xs font-nunito border border-white/20"
                             >
-                              {tech}
+                              {tech.name}
                             </span>
                           ))}
                         </div>
                         <button className="flex items-center gap-2 text-white font-nunito text-sm group-hover:gap-3 transition-all">
-                          Voir le projet
+                          Découvrir le projet
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                           </svg>
@@ -269,14 +156,15 @@ export default function ProjectsContent() {
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="font-bangers text-2xl text-gray-900 mb-2 group-hover:text-secondary transition-colors">
+                        <div className="text-secondary text-xs font-nunito uppercase tracking-wider mb-2">
+                          {project.category}
+                        </div>
+                        <h3 className="font-bangers text-2xl lg:text-3xl text-gray-900 mb-2 group-hover:text-secondary transition-colors">
                           {project.title}
                         </h3>
-                        <div className="flex items-center gap-2 text-sm text-gray-500 font-nunito">
-                          <span>{project.category}</span>
-                          <span>•</span>
-                          <span>{project.year}</span>
-                        </div>
+                        <p className="text-gray-600 text-sm font-nunito line-clamp-2">
+                          {project.subtitle}
+                        </p>
                       </div>
                       <div className="ml-4">
                         <div className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center group-hover:bg-secondary transition-colors">
@@ -288,7 +176,7 @@ export default function ProjectsContent() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -340,7 +228,7 @@ export default function ProjectsContent() {
                 Discutons de votre vision et transformons-la en réalité digitale.
                 Notre équipe d'experts est prête à vous accompagner de l'idée à la mise en production.
               </p>
-              <a href="/fr/Contact">
+              <a href={`/${lang}/Contact`}>
                 <button className="bg-secondary hover:bg-black transition-colors duration-200 inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 rounded-full text-white text-base md:text-lg font-bangers hover:scale-105">
                   <div className="rounded-full bg-white p-2">
                     <img src="/assets/Vector.png" alt="" className="w-5 h-5" />

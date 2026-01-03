@@ -1,5 +1,3 @@
-'use client'
-
 export interface BlogArticle {
   id: number
   title: string
@@ -42,6 +40,8 @@ export const blogArticles: BlogArticle[] = [
     date: "5 décembre 2024",
     readTime: "6 min",
     image: "https://picsum.photos/seed/iot-villes-intelligentes/1200/800"
+    ,
+    slug: "iot-villes-intelligentes-afrique"
   },
   {
     id: 4,
@@ -50,7 +50,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Géomatique",
     date: "1 décembre 2024",
     readTime: "5 min",
-    image: "https://picsum.photos/seed/geomatique-ressources-naturelles/1200/800"
+    image: "https://picsum.photos/seed/geomatique-ressources-naturelles/1200/800",
+    slug: "geomatique-gestion-ressources-naturelles"
   },
   {
     id: 5,
@@ -59,7 +60,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Cloud",
     date: "28 novembre 2024",
     readTime: "4 min",
-    image: "https://picsum.photos/seed/cloud-computing-afrique/1200/800"
+    image: "https://picsum.photos/seed/cloud-computing-afrique/1200/800",
+    slug: "cloud-computing-transformation-digitale-pme"
   },
   {
     id: 6,
@@ -68,7 +70,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Sécurité",
     date: "25 novembre 2024",
     readTime: "7 min",
-    image: "https://picsum.photos/seed/cybersecurite-afrique/1200/800"
+    image: "https://picsum.photos/seed/cybersecurite-afrique/1200/800",
+    slug: "cybersecurite-protection-entreprises"
   },
   {
     id: 7,
@@ -77,7 +80,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Design",
     date: "20 novembre 2024",
     readTime: "5 min",
-    image: "https://picsum.photos/seed/design-ux-ui/1200/800"
+    image: "https://picsum.photos/seed/design-ux-ui/1200/800",
+    slug: "design-ux-ui-experiences-conversion"
   },
   {
     id: 8,
@@ -86,7 +90,8 @@ export const blogArticles: BlogArticle[] = [
     category: "E-commerce",
     date: "15 novembre 2024",
     readTime: "6 min",
-    image: "https://picsum.photos/seed/ecommerce-afrique-2025/1200/800"
+    image: "https://picsum.photos/seed/ecommerce-afrique-2025/1200/800",
+    slug: "ecommerce-afrique-tendances-2025"
   }
 ]
 

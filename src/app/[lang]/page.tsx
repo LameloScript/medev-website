@@ -12,6 +12,7 @@ import ChooseUs from "@/src/components/views/home/choose-us";
 import Distinctions from "@/src/components/views/home/distinctions";
 import TeamTest from "@/src/components/views/home/team-test";
 import BlogPreview from "@/src/components/views/home/blog-preview";
+import { getProjects } from "@/lib/strapi-projects";
 
 
 
@@ -23,7 +24,10 @@ export async function generateStaticParams() {
   ]
 }
 
-export default function Home() {
+export default async function Home() {
+  // Récupérer les projets depuis Strapi
+  const projects = await getProjects();
+
   return (
     <div className="flex flex-col min-h-screen w-full bg-white font-sans dark:bg-black">
       {/* Hero prend toute la hauteur de l'écran avec son propre header */}
@@ -31,7 +35,7 @@ export default function Home() {
 
       {/* Contenu après le hero avec spacing */}
       <Services />
-      <Yproject />
+      <Yproject projects={projects} />
       <Cta />
       <Industry />
       <ChooseUs />

@@ -26,7 +26,7 @@ export default function services() {
       bg: "bg-[#FFE6D5]",
     },
     {
-      title: "géomatique",
+      title: "Ingénierie spatiale",
       img: "/assets/service-4.png",
       bg: "bg-[#FBFBFB]",
     },

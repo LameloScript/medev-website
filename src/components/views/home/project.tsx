@@ -456,11 +456,11 @@ export default function project() {
                                                     IoT
                                                 </ToggleGroupItem>
                                                 <ToggleGroupItem
-                                                    value="geospatial"
-                                                    aria-label="GeoSpacial"
+                                                    value="spatial"
+                                                    aria-label="Ingénierie spatiale"
                                                     className="bg-white text-black hover:bg-[#FF6300] hover:text-white data-[state=on]:bg-[#FF6300] data-[state=on]:text-white transition-colors text-xs lg:text-sm px-3 py-2"
                                                 >
-                                                    GeoSpacial
+                                                    Ingénierie spatiale
                                                 </ToggleGroupItem>
                                                 <ToggleGroupItem
                                                     value="other"
