@@ -1,0 +1,7 @@
+# Security Policy for Medev Group
+# See https://securitytxt.org/ for more information
+
+Contact: mailto:Contacts@medev-group.com
+Expires: 2027-01-05T00:00:00.000Z
+Preferred-Languages: fr, en
+Canonical: https://medev-group.com/.well-known/security.txt

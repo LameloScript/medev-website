@@ -14,6 +14,14 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/.well-known/:path*",
+        destination: "/.well-known/:path*",
+      },
+    ];
+  },
   async headers() {
     return [
       {
