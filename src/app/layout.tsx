@@ -5,6 +5,7 @@ import "./globals.css";
 import Footer from "@/src/components/views/footer/footer";
 import HeaderWrapper from "@/src/components/views/header/header-wrapper";
 import BackToTopButton from "@/src/components/others-ui/back-to-top";
+import CookieConsentBanner from "@/src/components/others-ui/cookie-consent";
 
 
 const nunitoSans = Nunito({
@@ -55,6 +56,15 @@ export default function RootLayout({
         className={`${nunitoSans.variable} ${caesarDressing.variable} ${poppins.variable} ${bangers.variable} antialiased m-0 px-0`}
       >
         <Script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}`} strategy="lazyOnload" />
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-58DKGVRR"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         <div className="w-full min-h-screen flex flex-col">
           <HeaderWrapper />
           <main className="flex-1">
@@ -63,6 +73,7 @@ export default function RootLayout({
           <Footer />
           <BackToTopButton />
         </div>
+        <CookieConsentBanner />
       </body>
     </html>
   );

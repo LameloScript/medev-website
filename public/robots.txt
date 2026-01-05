@@ -1,0 +1,13 @@
+# Robots.txt pour Medev Group
+# Voir https://www.robotstxt.org/ pour plus d'informations
+
+User-agent: *
+Allow: /
+
+# Zones restreintes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Sitemap (à décommenter si disponible)
+# Sitemap: https://medev-group.com/sitemap.xml
