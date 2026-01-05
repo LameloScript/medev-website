@@ -5,11 +5,13 @@ import Menu from "@/src/components/views/header/menu";
 import { Menu1 } from "@/src/components/views/footer/menu";
 import HeroImage from "@/src/components/views/home/hero-image";
 import Title from "./hero/title";
+import { useParams } from "next/navigation";
 
 
 export default function Hero() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [darkMode] = useState(false);
+  const { lang } = useParams() as { lang: string };
 
   return (
     <div className="relative h-screen flex flex-col overflow-hidden">
@@ -34,7 +36,7 @@ export default function Hero() {
                                   </a>
                               </div>
                               <div className="text-[10px] sm:text-xs lg:text-sm font-nunito hidden md:flex shrink-0">
-                                  ©2025
+                                  ©2026
                               </div>
                               <button
                                   onClick={() => setIsMenuOpen(true)}
@@ -64,7 +66,7 @@ export default function Hero() {
                                       <span className="text-sm lg:text-base font-nunito">Medev Group</span></a>
                               </div>
                               <div className="text-xs lg:text-sm font-nunito hidden lg:flex">
-                                  ©2025
+                                  ©2026
                               </div>
                               <button
                                   onClick={() => setIsMenuOpen(false)}
@@ -119,7 +121,7 @@ export default function Hero() {
                 valeurs africaines.
             </span>
           </div>
-          <a href="/fr/Contact">
+          <a href={`/${lang}#project-section`}>
               <button className="bg-secondary hover:bg-black transition-colors duration-200 group flex items-center gap-2 px-4 py-2 mt-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
                 <div className="rounded-full bg-gray-100 p-1">
                   <img src="/assets/Vector.png" alt="" className="w-5 h-5" />

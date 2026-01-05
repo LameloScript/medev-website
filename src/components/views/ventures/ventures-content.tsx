@@ -144,28 +144,9 @@ export default function VenturesContent() {
 
                 {/* Footer */}
                 <div className="flex items-center justify-between pt-6 border-t border-gray-200">
-                  {venture.website ? (
-                    <a
-                      href={venture.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-secondary text-sm font-nunito group-hover:underline flex items-center gap-2"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Visiter le site
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                  ) : (
+                  {venture.website ? null : (
                     <span className="text-gray-500 text-sm font-nunito italic">Bientôt disponible</span>
                   )}
-                  <button className="text-gray-900 text-sm font-nunito hover:text-secondary transition-colors flex items-center gap-1">
-                    En savoir plus
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
                 </div>
               </div>
             ))}

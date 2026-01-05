@@ -15,7 +15,7 @@ const teamMembers: TeamMember[] = [
     name: 'EDGAR KOUASSI',
     title: 'CEO',
     description: 'Géomaticien, développeur SIG fullstack',
-    image: '/assets/team/Edgar Kouassi.avif'
+    image: '/assets/team/edgar.avif'
   },
   {
     name: 'DANIEL BOUA',

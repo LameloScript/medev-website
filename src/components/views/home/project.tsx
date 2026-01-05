@@ -20,9 +20,18 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { LoadingCarousel } from "@/components/ui/loading-carousel"
+import { Checkbox } from "@/components/ui/checkbox"
 
 import { useState, useEffect } from "react";
 
@@ -30,6 +39,8 @@ import { useState, useEffect } from "react";
 export default function project() {
     const [currentStep, setCurrentStep] = useState(1);
     const totalSteps = 3;
+    const [status, setStatus] = useState<{ type: 'idle' | 'loading' | 'success' | 'error'; message?: string }>({ type: 'idle' })
+    const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
     // Form data state
     const [formData, setFormData] = useState({
@@ -44,7 +55,8 @@ export default function project() {
         // Step 3
         budget: "",
         solutions: [] as string[],
-        message: ""
+        message: "",
+        termsAccepted: false
     });
 
     // Check for pre-selected industry from sessionStorage
@@ -78,10 +90,13 @@ export default function project() {
     };
 
     const isStep3Valid = () => {
+        const budgetOnlyNumbers = /^[0-9\s]+$/.test(formData.budget.trim());
         return (
             formData.budget.trim() !== "" &&
+            budgetOnlyNumbers &&
             formData.solutions.length > 0 &&
-            formData.message.trim() !== ""
+            formData.message.trim() !== "" &&
+            formData.termsAccepted
         );
     };
 
@@ -104,7 +119,119 @@ export default function project() {
         }
     };
 
+    const handleSubmit = async () => {
+        if (!siteKey) {
+            setStatus({ type: 'error', message: 'Une erreur technique s\'est produite. Veuillez rafraîchir la page et réessayer.' })
+            return
+        }
+
+        setStatus({ type: 'loading', message: 'Nous vérifions et envoyons votre demande de projet. Veuillez patienter quelques instants...' })
+
+        try {
+            // Générer le token reCAPTCHA
+            const token = await (window as any).grecaptcha.execute(siteKey, { action: 'project' })
+
+            // Envoyer les données
+            const res = await fetch('/api/project', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token, form: formData })
+            })
+
+            if (!res.ok) {
+                const errorData = await res.json()
+
+                // Si la limite est atteinte (status 429)
+                if (res.status === 429) {
+                    setStatus({
+                        type: 'error',
+                        message: 'Vous avez atteint la limite de 2 demandes de projet avec cette adresse email. Pour poursuivre, contactez-nous directement à contacts@medev-group.com ou au +225 07 89 77 60 28.'
+                    })
+                } else {
+                    setStatus({ type: 'error', message: errorData.error || 'L\'envoi a échoué. Vérifiez votre connexion internet et réessayez. Si le problème persiste, contactez-nous au +225 07 89 77 60 28.' })
+                }
+                return
+            }
+
+            // Succès
+            setStatus({ type: 'success', message: 'Merci pour votre confiance ! Votre demande de projet a bien été reçue. Notre équipe l\'analysera et vous contactera dans les 24 à 48 heures pour discuter des prochaines étapes.' })
+
+            // Réinitialiser le formulaire après 3 secondes
+            setTimeout(() => {
+                setFormData({
+                    industry: "",
+                    name: "",
+                    email: "",
+                    phone: "",
+                    company: "",
+                    position: "",
+                    budget: "",
+                    solutions: [],
+                    message: "",
+                    termsAccepted: false
+                })
+                setCurrentStep(1)
+                setStatus({ type: 'idle' })
+            }, 3000)
+        } catch (error) {
+            setStatus({ type: 'error', message: 'Une erreur inattendue s\'est produite lors de l\'envoi. Veuillez réessayer ou nous contacter directement au +225 07 89 77 60 28.' })
+        }
+    };
+
     return (
+        <>
+        {/* Dialog Modal pour les messages */}
+        <Dialog open={status.type !== 'idle'} onOpenChange={(open) => !open && status.type !== 'loading' && setStatus({ type: 'idle' })}>
+            <DialogContent className="sm:max-w-md" showCloseButton={status.type !== 'loading'}>
+                <DialogHeader className="flex flex-col items-center text-center gap-4">
+                    {/* Icon */}
+                    {status.type === 'success' && (
+                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                    )}
+                    {status.type === 'error' && (
+                        <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto">
+                            <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </div>
+                    )}
+                    {status.type === 'loading' && (
+                        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                            <svg className="animate-spin w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                        </div>
+                    )}
+
+                    <DialogTitle className="font-bangers text-2xl">
+                        {status.type === 'success' && 'Demande envoyée !'}
+                        {status.type === 'error' && 'Une erreur est survenue'}
+                        {status.type === 'loading' && 'Traitement en cours'}
+                    </DialogTitle>
+                    <DialogDescription className="text-base">
+                        {status.message}
+                    </DialogDescription>
+                </DialogHeader>
+
+                {/* Close Button */}
+                {status.type !== 'loading' && (
+                    <div className="flex justify-center mt-4">
+                        <button
+                            onClick={() => setStatus({ type: 'idle' })}
+                            className="bg-[#FF6300] hover:bg-[#ff7a33] text-white px-6 py-2 rounded-full font-bangers text-lg transition-colors"
+                        >
+                            Fermer
+                        </button>
+                    </div>
+                )}
+            </DialogContent>
+        </Dialog>
+
         <div id="project-section">
             {/*
             <div className="flex flex-col items-center gap-4 pb-8">
@@ -411,14 +538,33 @@ export default function project() {
                                 </div>
                                 <div className="grid grid-cols-1 gap-4 lg:gap-6">
                                     <div className="grid w-full items-center gap-2">
-                                        <Label htmlFor="budget" className="text-white text-sm lg:text-base">Quel est votre budget ?</Label>
-                                        <Input
-                                            type="text"
-                                            id="budget"
-                                            placeholder="Ex: 5 000 000 - 30 000 000 FCFA"
-                                            value={formData.budget}
-                                            onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                                        />
+                                        <Label htmlFor="budget" className="text-white text-sm lg:text-base">Quel est votre budget ? (chiffres uniquement)</Label>
+                                        <div className="relative">
+                                            <Input
+                                                type="text"
+                                                id="budget"
+                                                placeholder="Ex: 5000000"
+                                                value={formData.budget}
+                                                onChange={(e) => {
+                                                    // Retirer tout sauf les chiffres
+                                                    const digitsOnly = e.target.value.replace(/[^0-9]/g, '');
+
+                                                    // Formater avec des espaces tous les 3 chiffres
+                                                    const formatted = digitsOnly.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
+                                                    setFormData({ ...formData, budget: formatted });
+                                                }}
+                                                className={!formData.budget.trim() || /^[0-9\s]+$/.test(formData.budget.trim()) ? "" : "border-red-500"}
+                                            />
+                                            {formData.budget && (
+                                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white/60 text-sm pointer-events-none">
+                                                    FCFA
+                                                </span>
+                                            )}
+                                        </div>
+                                        {formData.budget.trim() && !/^[0-9\s]+$/.test(formData.budget.trim()) && (
+                                            <p className="text-red-500 text-xs mt-1">Le budget doit contenir uniquement des chiffres</p>
+                                        )}
                                     </div>
                                     <div className="grid w-full items-center gap-2">
                                         <Label className="text-white text-sm lg:text-base">
@@ -482,6 +628,18 @@ export default function project() {
                                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         />
                                     </div>
+                                    <div className="flex items-start gap-3">
+                                        <Checkbox
+                                            id="terms"
+                                            checked={formData.termsAccepted}
+                                            onCheckedChange={(checked) => setFormData({ ...formData, termsAccepted: !!checked })}
+                                        />
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="terms" className="text-white text-sm lg:text-base">J’accepte les conditions générales</Label>
+                                            <p className="text-muted-foreground text-sm">En cochant cette case, vous acceptez les conditions générales.</p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         )}
@@ -509,13 +667,21 @@ export default function project() {
                                     ))}
                                 </div>
                                 <Button
-                                    onClick={nextStep}
-                                    disabled={currentStep === totalSteps || !canProceed()}
+                                    onClick={currentStep === totalSteps ? handleSubmit : nextStep}
+                                    disabled={(currentStep === totalSteps && status.type === 'loading') || !canProceed()}
                                     size="sm"
                                     className="bg-[#FF6300] text-white hover:bg-[#ff7a33] disabled:opacity-50 disabled:cursor-not-allowed text-xs lg:text-sm px-2 py-1 lg:px-4 lg:py-2"
                                 >
-                                    <span className="hidden sm:inline">{currentStep === totalSteps ? 'Envoyer' : 'Suivant'}</span>
-                                    <span className="sm:hidden">{currentStep === totalSteps ? 'Envoyer' : 'Suivant'}</span>
+                                    <span className="hidden sm:inline">
+                                        {currentStep === totalSteps
+                                            ? (status.type === 'loading' ? 'Envoi...' : 'Envoyer')
+                                            : 'Suivant'}
+                                    </span>
+                                    <span className="sm:hidden">
+                                        {currentStep === totalSteps
+                                            ? (status.type === 'loading' ? 'Envoi...' : 'Envoyer')
+                                            : 'Suivant'}
+                                    </span>
                                     <ArrowRight className="w-3 h-3 lg:w-4 lg:h-4 ml-1 lg:ml-2" />
                                 </Button>
                             </div>
@@ -524,6 +690,6 @@ export default function project() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
-

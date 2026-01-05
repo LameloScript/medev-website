@@ -1,39 +1,142 @@
 'use client'
 
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
 import Breadcrumb from "@/components/ui/breadcrumb"
 
+// Schéma de validation Zod
+const contactFormSchema = z.object({
+  contactReason: z.string().min(1, "Veuillez sélectionner un motif de contact"),
+  mediaType: z.string().optional(),
+  partnershipType: z.string().optional(),
+  recruitmentType: z.string().optional(),
+  suppliersType: z.string().optional(),
+  educationType: z.string().optional(),
+  legalType: z.string().optional(),
+  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
+  email: z.string().email("Veuillez entrer une adresse email valide"),
+  phone: z.string().optional(),
+  message: z.string().min(10, "Le message doit contenir au moins 10 caractères"),
+  howDidYouKnow: z.string().optional(),
+  portfolioUrl: z.string().url("URL invalide").optional().or(z.literal("")),
+  eventDate: z.string().optional(),
+  acceptTerms: z.boolean().refine((val) => val === true, {
+    message: "Vous devez accepter les conditions pour continuer"
+  }),
+})
+
+type ContactFormValues = z.infer<typeof contactFormSchema>
+
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    site: '',
-    budget: '',
-    message: '',
-    howDidYouKnow: '',
-    acceptTerms: false
+  const [status, setStatus] = useState<{ type: 'idle' | 'loading' | 'success' | 'error'; message?: string }>({ type: 'idle' })
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+
+  const form = useForm<ContactFormValues>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      contactReason: '',
+      mediaType: '',
+      partnershipType: '',
+      recruitmentType: '',
+      suppliersType: '',
+      educationType: '',
+      legalType: '',
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+      howDidYouKnow: '',
+      portfolioUrl: '',
+      eventDate: '',
+      acceptTerms: false,
+    },
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Logique d'envoi du formulaire à implémenter
-    console.log('Form submitted:', formData)
+  const onSubmit = async (data: ContactFormValues) => {
+    if (!siteKey) {
+      setStatus({ type: 'error', message: 'Une erreur technique s\'est produite. Veuillez rafraîchir la page et réessayer.' })
+      return
+    }
+
+    setStatus({ type: 'loading', message: 'Nous envoyons votre message. Cela ne prendra que quelques secondes...' })
+
+    try {
+      const token = await (window as any).grecaptcha.execute(siteKey, { action: 'contact' })
+      const body = {
+        token,
+        form: {
+          name: data.name,
+          phone: data.phone || '',
+          email: data.email,
+          message: data.message,
+          site: data.contactReason,
+          howDidYouKnow: data.howDidYouKnow || '',
+          mediaType: data.mediaType || '',
+          partnershipType: data.partnershipType || '',
+          recruitmentType: data.recruitmentType || '',
+          suppliersType: data.suppliersType || '',
+          educationType: data.educationType || '',
+          legalType: data.legalType || '',
+          portfolioUrl: data.portfolioUrl || '',
+          eventDate: data.eventDate || ''
+        }
+      }
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+
+      const responseData = await res.json()
+
+      if (!res.ok) {
+        setStatus({ type: 'error', message: responseData.error || 'L\'envoi a échoué. Vérifiez votre connexion internet et réessayez. Si le problème persiste, appelez-nous au +225 07 89 77 60 28.' })
+        return
+      }
+
+      setStatus({ type: 'success', message: 'Merci pour votre message ! Nous l\'avons bien reçu et vous répondrons dans un délai de 24 à 48 heures. À très bientôt !' })
+      form.reset()
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setStatus({ type: 'error', message: 'Une erreur inattendue s\'est produite. Veuillez réessayer ou nous contacter directement au +225 07 89 77 60 28.' })
+    }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
-    }))
-  }
+  const contactReason = form.watch('contactReason')
 
   return (
     <div className="min-h-screen bg-white font-sans relative">
@@ -81,10 +184,8 @@ export default function ContactForm() {
             </h1>
 
             <div className="space-y-2 text-sm lg:text-base font-nunito">
-              <p>Vous avez une ou des questions ?</p>
-              <p>Vous avez un projet à lancer ou une identité visuelle à refondre ?</p>
-              <p>N'hésitez pas à nous écrire en remplissant ce formulaire de contact. On</p>
-              <p>sera ravis de vous répondre dans les plus brefs délais.</p>
+              <p>Quel que soit votre besoin (projet, recrutement, partenariat, presse...), notre équipe est à votre écoute.</p>
+              <p>Remplissez le formulaire pour nous contacter et nous vous répondrons dans les meilleurs délais.</p>
             </div>
           </div>
 
@@ -97,11 +198,14 @@ export default function ContactForm() {
               </h2>
 
               <div className="space-y-2 font-nunito">
-                <a href="mailto:contact@lagencedesignstudio.com" className="block text-base lg:text-lg hover:underline">
-                  contact@medev-group.com
+                <a href="mailto:contacts@medev-group.com" className="block text-base lg:text-lg hover:underline">
+                  contacts@medev-group.com
                 </a>
                 <a href="tel:+2250789776028" className="block text-base lg:text-lg hover:underline">
-                  +225 07 89 77 60 28 <br/> +225 07 08 81 35 16
+                  +225 07 89 77 60 28 
+                </a>
+                <a href="tel:+2250708813516" className="block text-base lg:text-lg hover:underline">
+                   +225 07 08 81 35 16
                 </a>
               </div>
             </div>
@@ -112,112 +216,352 @@ export default function ContactForm() {
                 Notre formulaire
               </h2>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Nom & Prénom */}
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Nom & Prénom :"
-                    required
-                    className="w-full bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black transition-colors"
+              <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <FormField
+                  control={form.control}
+                  name="contactReason"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <select
+                          {...field}
+                          className="w-full bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
+                        >
+                          <option value="">Motif de contact :</option>
+                          <option value="presse">Presse et médias</option>
+                          <option value="partenariat">Partenariats/alliances</option>
+                          <option value="recrutement">Recrutement/talents</option>
+                          <option value="fournisseurs">Fournisseurs/prestataires</option>
+                          <option value="education">Éducation/événements</option>
+                          <option value="legal">Administratif/légal</option>
+                          <option value="autre">Autre</option>
+                        </select>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {contactReason === 'presse' && (
+                  <FormField
+                    control={form.control}
+                    name="mediaType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <select
+                            {...field}
+                            className="w-full bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
+                          >
+                            <option value="">Sélectionnez le type de demande média :</option>
+                            <option value="interviews">Interviews</option>
+                            <option value="communiques">Communiqués</option>
+                            <option value="etude-de-cas">Étude de cas</option>
+                          </select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
+                )}
+
+                {contactReason === 'partenariat' && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="partnershipType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <select
+                              {...field}
+                              className="bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
+                            >
+                              <option value="">Type de partenariat :</option>
+                              <option value="agence">Agence</option>
+                              <option value="integrateur">Intégrateur</option>
+                              <option value="revendeur">Revendeur</option>
+                              <option value="co-marketing">Co-marketing</option>
+                            </select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="howDidYouKnow"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              placeholder="Contexte ou référence"
+                              className="bg-transparent border-b border-black border-t-0 border-x-0 rounded-none pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
+
+                {contactReason === 'recrutement' && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="recruitmentType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <select
+                              {...field}
+                              className="bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
+                            >
+                              <option value="">Type de collaboration :</option>
+                              <option value="stage">Stage</option>
+                              <option value="cdi">CDI</option>
+                              <option value="freelance">Freelance</option>
+                            </select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="portfolioUrl"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              type="url"
+                              placeholder="Portfolio (URL)"
+                              className="bg-transparent border-b border-black border-t-0 border-x-0 rounded-none pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
+
+                {contactReason === 'fournisseurs' && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="suppliersType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <select
+                              {...field}
+                              className="bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
+                            >
+                              <option value="">Type de prestation :</option>
+                              <option value="hebergement">Hébergement</option>
+                              <option value="marketing">Marketing</option>
+                              <option value="design">Design</option>
+                              <option value="developpement">Développement</option>
+                              <option value="autre">Autre</option>
+                            </select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="howDidYouKnow"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              placeholder="Référence ou proposition"
+                              className="bg-transparent border-b border-black border-t-0 border-x-0 rounded-none pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
+
+                {contactReason === 'education' && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="educationType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <select
+                              {...field}
+                              className="bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
+                            >
+                              <option value="">Type d'événement :</option>
+                              <option value="conference">Conférence</option>
+                              <option value="formation">Formation</option>
+                              <option value="atelier">Atelier</option>
+                              <option value="webinar">Webinar</option>
+                            </select>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="eventDate"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              placeholder="Date ou période prévue"
+                              className="bg-transparent border-b border-black border-t-0 border-x-0 rounded-none pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                )}
+
+                {contactReason === 'legal' && (
+                  <FormField
+                    control={form.control}
+                    name="legalType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <select
+                            {...field}
+                            className="w-full bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
+                          >
+                            <option value="">Type de demande :</option>
+                            <option value="facturation">Facturation</option>
+                            <option value="contrat">Contrat</option>
+                            <option value="rgpd">RGPD</option>
+                            <option value="autre">Autre</option>
+                          </select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+                {/* Nom & Prénom */}
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder="Nom & Prénom :"
+                          className="w-full bg-transparent border-b border-black border-t-0 border-x-0 rounded-none pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 {/* Téléphone & Email */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <input
-                    type="tel"
+                  <FormField
+                    control={form.control}
                     name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Téléphone :"
-                    className="bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black transition-colors"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="tel"
+                            placeholder="Téléphone :"
+                            className="bg-transparent border-b border-black border-t-0 border-x-0 rounded-none pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                  <input
-                    type="email"
+                  <FormField
+                    control={form.control}
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="E-mail :"
-                    required
-                    className="bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black transition-colors"
-                  />
-                </div>
-
-                {/* Type de site web et Budget */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <select
-                    name="site"
-                    value={formData.site}
-                    onChange={handleChange}
-                    required
-                    className="bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
-                  >
-                    <option value="">Type de site web :</option>
-                    <option value="vitrine">Site vitrine</option>
-                    <option value="ecommerce">E-commerce</option>
-                    <option value="sur-mesure">Sur mesure</option>
-                  </select>
-
-                  <input
-                    type="text"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleChange}
-                    placeholder="Budget (Ex: 5 000 000 - 30 000 000 FCFA)"
-                    className="bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black transition-colors"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="email"
+                            placeholder="E-mail :"
+                            className="bg-transparent border-b border-black border-t-0 border-x-0 rounded-none pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
                 </div>
 
                 {/* Message */}
-                <div>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Message :"
-                    rows={4}
-                    required
-                    className="w-full bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black transition-colors resize-none"
-                  ></textarea>
-                </div>
-
-                {/* Comment nous avez-vous connu ? */}
-                <div>
-                  <input
-                    type="text"
-                    name="howDidYouKnow"
-                    value={formData.howDidYouKnow}
-                    onChange={handleChange}
-                    placeholder="Comment nous avez-vous connu ?"
-                    className="w-full bg-transparent border-b border-black pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black transition-colors"
-                  />
-                </div>
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Textarea
+                          {...field}
+                          placeholder="Message :"
+                          rows={4}
+                          className="w-full bg-transparent border-b border-black border-t-0 border-x-0 rounded-none pb-3 text-sm lg:text-base font-nunito placeholder-gray-600 focus:outline-none focus:border-black focus-visible:ring-0 focus-visible:ring-offset-0 transition-colors resize-none"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 {/* Checkbox RGPD */}
-                <div className="flex items-start gap-3 pt-4">
-                  <input
-                    type="checkbox"
-                    name="acceptTerms"
-                    id="acceptTerms"
-                    checked={formData.acceptTerms}
-                    onChange={handleChange}
-                    required
-                    className="mt-1 w-4 h-4 border border-black cursor-pointer"
-                  />
-                  <label htmlFor="acceptTerms" className="text-xs lg:text-sm font-nunito cursor-pointer">
-                    J'accepte que mes coordonnées soient enregistrées utilisées dans le but d'être recontacté.
-                  </label>
-                </div>
+                <FormField
+                  control={form.control}
+                  name="acceptTerms"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 pt-4">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                          className="mt-1 border-black"
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <label className="text-xs lg:text-sm font-nunito cursor-pointer">
+                          J'accepte que mes coordonnées soient enregistrées utilisées dans le but d'être recontacté.
+                        </label>
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
 
                 {/* Submit Button */}
                 <div className="pt-4">
                   <button
                     type="submit"
-                    className="bg-secondary hover:bg-black transition-colors duration-200 flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit"
+                    disabled={status.type === 'loading'}
+                    className="bg-secondary hover:bg-black transition-colors duration-200 flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <div className="rounded-full bg-gray-100 p-1">
                       <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
@@ -226,10 +570,44 @@ export default function ContactForm() {
                   </button>
                 </div>
               </form>
+              </Form>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Status Dialog */}
+      <Dialog open={status.type !== 'idle'} onOpenChange={(open) => !open && status.type !== 'loading' && setStatus({ type: 'idle' })}>
+        <DialogContent className="sm:max-w-md" showCloseButton={status.type !== 'loading'}>
+          <DialogHeader className="flex flex-col items-center text-center gap-4">
+            {status.type === 'success' && (
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            )}
+            {status.type === 'error' && (
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto">
+                <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </div>
+            )}
+            {status.type === 'loading' && (
+              <div className="w-16 h-16 border-4 border-secondary border-t-transparent rounded-full animate-spin mx-auto"></div>
+            )}
+            <DialogTitle className="font-bangers text-2xl">
+              {status.type === 'success' && 'Message envoyé !'}
+              {status.type === 'error' && 'Une erreur est survenue'}
+              {status.type === 'loading' && 'Envoi en cours'}
+            </DialogTitle>
+            <DialogDescription className="text-base">
+              {status.message}
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
 
       {/* Map Section */}
       <div className="container mx-auto px-4 lg:px-20 py-12 lg:py-16">

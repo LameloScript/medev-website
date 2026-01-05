@@ -6,7 +6,14 @@ const STRAPI_API_URL = process.env.STRAPI_API_URL || 'http://localhost:1337';
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
 
 if (!STRAPI_API_TOKEN) {
-  console.warn('STRAPI_API_TOKEN is not defined in environment variables');
+  console.warn('⚠️ STRAPI_API_TOKEN is not defined in environment variables');
+}
+
+// Log de configuration (seulement en développement ou pour debug)
+if (process.env.NODE_ENV !== 'production') {
+  console.log('🔧 Strapi Configuration:');
+  console.log('  - API URL:', STRAPI_API_URL);
+  console.log('  - Token configured:', !!STRAPI_API_TOKEN);
 }
 
 /**

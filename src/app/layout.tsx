@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Nunito, Caesar_Dressing, Poppins, Bangers } from "next/font/google";
 import "./globals.css";
 import Footer from "@/src/components/views/footer/footer";
@@ -53,6 +54,7 @@ export default function RootLayout({
       <body
         className={`${nunitoSans.variable} ${caesarDressing.variable} ${poppins.variable} ${bangers.variable} antialiased m-0 px-0`}
       >
+        <Script src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}`} strategy="lazyOnload" />
         <div className="w-full min-h-screen flex flex-col">
           <HeaderWrapper />
           <main className="flex-1">

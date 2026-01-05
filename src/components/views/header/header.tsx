@@ -24,7 +24,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
                             </a>
                         </div>
                         <div className="text-xs lg:text-sm font-nunito hidden lg:flex">
-                            ©2025
+                            ©2026
                         </div>
                         <button
                             onClick={() => setIsMenuOpen(true)}
@@ -53,7 +53,7 @@ export default function Header({ darkMode = false }: HeaderProps) {
                                 <span className="text-sm lg:text-base font-nunito">Medev Group</span></a>
                         </div>
                         <div className="text-xs lg:text-sm font-nunito hidden lg:flex">
-                            ©2025
+                            ©2026
                         </div>
                         <button
                             onClick={() => setIsMenuOpen(false)}

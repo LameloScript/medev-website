@@ -314,7 +314,7 @@ export default function ProjectDetail({ data }: { data: ProjectDetailData }) {
               Discutons de votre vision et transformons-la en une solution digitale performante qui génère des résultats concrets.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href={`/${lang}/Contact`}>
+              <a href={`/${lang}#project-section`}>
                 <button className="bg-secondary hover:bg-secondary/90 transition-colors duration-200 flex items-center gap-2 px-8 py-4 rounded-full text-white text-lg font-bangers">
                   <div className="rounded-full bg-white p-1">
                     <img src="/assets/Vector.png" alt="" className="w-5 h-5" />

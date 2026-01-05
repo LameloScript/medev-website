@@ -1,4 +1,4 @@
- "use client";
+"use client";
 import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
@@ -7,8 +7,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useParams } from "next/navigation";
 
 export default function services() {
+  const { lang } = useParams() as { lang: string };
   const items = [
     {
       title: "Developpement Web",
@@ -102,7 +104,7 @@ export default function services() {
       </div>
 
       <div className="flex items-center justify-center mt-6">
-        <a href="/fr/Contact">
+        <a href={`/${lang}#project-section`}>
           <button className="bg-secondary hover:bg-white hover:text-black transition-colors duration-200 flex items-center gap-2 px-4 py-2 rounded-full text-white text-base font-bangers w-fit opacity-0 animate-fade-in-up [animation-delay:0.4s]">
             <div className="rounded-full bg-gray-100 p-1">
               <img src="/assets/Vector.png" alt="" className="w-5 h-5" />
