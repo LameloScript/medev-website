@@ -9,5 +9,5 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
 
-# Sitemap (à décommenter si disponible)
-# Sitemap: https://medev-group.com/sitemap.xml
+# Sitemap
+Sitemap: https://medev-group.com/sitemap.xml
