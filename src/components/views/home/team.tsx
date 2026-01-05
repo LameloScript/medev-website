@@ -1,4 +1,8 @@
+import { useState } from 'react'
+import ApplyDialog from '@/src/components/views/recruitment/apply-dialog'
+
 export default function Team() {
+    const [applyOpen, setApplyOpen] = useState(false)
     return (
         <div className="container-fixed lg:py-22 px-4 lg:px-20 relative z-10">
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-start justify-between">
@@ -44,11 +48,12 @@ export default function Team() {
                     <p className="text-center text-sm lg:text-base font-nunito">
                         Vous êtes passionné par le digital ? Venez créer l'avenir avec nous !
                     </p>
-                    <button className="bg-white text-secondary px-6 py-2 rounded-full font-bold text-sm lg:text-base hover:bg-gray-100 transition-colors duration-300">
+                    <button onClick={() => setApplyOpen(true)} className="bg-white text-secondary px-6 py-2 rounded-full font-bold text-sm lg:text-base hover:bg-gray-100 transition-colors duration-300">
                         Postuler
                     </button>
                 </div>
             </div>
+            <ApplyDialog open={applyOpen} onOpenChange={setApplyOpen} />
         </div>
     )
 }
