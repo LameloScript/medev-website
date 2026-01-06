@@ -48,24 +48,20 @@ export function Menu1() {
 
     const footerItemss = [
         {
-            label: "Politique de confidentialité", href: "#"
+            label: "Politique de confidentialité", href: "/fr/confidentialite"
         },
 
         {
-            label: "Conditions générales", href: "#"
+            label: "Conditions générales", href: "/fr/cgu"
         },
 
         {
-            label: "Cookies", href: "#"
+            label: "Cookies", href: "/fr/cookies"
         },
 
         {
-            label: "Mentions légales", href: "#"
+            label: "Mentions légales", href: "/fr/mentions-legales"
         },
-
-        
-
-
     ]
     return (
         <div className="pt-2 lg:pt-0 flex flex-wrap items-center justify-center gap-2 lg:flex-row lg:gap-4">
